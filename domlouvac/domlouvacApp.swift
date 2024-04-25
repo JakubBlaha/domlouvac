@@ -25,7 +25,20 @@ struct domlouvacApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TabView {
+                GroupsView()
+                    .tabItem {
+                        Image(systemName: "person.3.fill")
+                    }
+                HomeView()
+                    .tabItem {
+                        Image(systemName: "calendar")
+                    }
+                ProfileView()
+                    .tabItem {
+                        Image(systemName: "person.crop.circle.fill")
+                    }
+            }
         }
         .modelContainer(sharedModelContainer)
     }
