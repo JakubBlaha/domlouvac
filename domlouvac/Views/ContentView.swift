@@ -1,12 +1,5 @@
-//
-//  ContentView.swift
-//  domlouvac
-//
-//  Created by Jakub Bláha on 23.04.2024.
-//
-
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext

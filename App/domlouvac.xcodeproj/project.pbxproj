@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		FCA7168C2BD825D1007876AB /* domlouvacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA7168B2BD825D1007876AB /* domlouvacApp.swift */; };
-		FCA7168E2BD825D1007876AB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA7168D2BD825D1007876AB /* ContentView.swift */; };
 		FCA716902BD825D1007876AB /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA7168F2BD825D1007876AB /* Item.swift */; };
 		FCA716922BD825D3007876AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCA716912BD825D3007876AB /* Assets.xcassets */; };
 		FCA716952BD825D3007876AB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCA716942BD825D3007876AB /* Preview Assets.xcassets */; };
@@ -30,6 +29,15 @@
 		FCA716D62BDA53BB007876AB /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA716D52BDA53BB007876AB /* Group.swift */; };
 		FCA716D82BDA568E007876AB /* CreateGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA716D72BDA568E007876AB /* CreateGroupView.swift */; };
 		FCA716DA2BDA56A1007876AB /* JoinGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA716D92BDA56A1007876AB /* JoinGroupView.swift */; };
+		FCA716DC2BDBA532007876AB /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA716DB2BDBA531007876AB /* RegisterView.swift */; };
+		FCA716DE2BDBA540007876AB /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA716DD2BDBA540007876AB /* LoginView.swift */; };
+		FCA716E02BDBA567007876AB /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA716DF2BDBA567007876AB /* WelcomeView.swift */; };
+		FCA716E22BDBAFDA007876AB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA716E12BDBAFDA007876AB /* MainView.swift */; };
+		FCA716E72BDBB4BB007876AB /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA716E62BDBB4BB007876AB /* Network.swift */; };
+		FCA716E92BDBBB38007876AB /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA716E82BDBBB38007876AB /* RegisterViewModel.swift */; };
+		FCA716EB2BDBC13E007876AB /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA716EA2BDBC13E007876AB /* HttpClient.swift */; };
+		FCA716ED2BDBC195007876AB /* JsonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA716EC2BDBC195007876AB /* JsonHelper.swift */; };
+		FCA716EF2BDBDD30007876AB /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA716EE2BDBDD30007876AB /* Auth.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +60,6 @@
 /* Begin PBXFileReference section */
 		FCA716882BD825D1007876AB /* domlouvac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = domlouvac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCA7168B2BD825D1007876AB /* domlouvacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = domlouvacApp.swift; sourceTree = "<group>"; };
-		FCA7168D2BD825D1007876AB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FCA7168F2BD825D1007876AB /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		FCA716912BD825D3007876AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FCA716942BD825D3007876AB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -76,6 +83,15 @@
 		FCA716D52BDA53BB007876AB /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		FCA716D72BDA568E007876AB /* CreateGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupView.swift; sourceTree = "<group>"; };
 		FCA716D92BDA56A1007876AB /* JoinGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinGroupView.swift; sourceTree = "<group>"; };
+		FCA716DB2BDBA531007876AB /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		FCA716DD2BDBA540007876AB /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		FCA716DF2BDBA567007876AB /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		FCA716E12BDBAFDA007876AB /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		FCA716E62BDBB4BB007876AB /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		FCA716E82BDBBB38007876AB /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		FCA716EA2BDBC13E007876AB /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
+		FCA716EC2BDBC195007876AB /* JsonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonHelper.swift; sourceTree = "<group>"; };
+		FCA716EE2BDBDD30007876AB /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +144,7 @@
 		FCA7168A2BD825D1007876AB /* domlouvac */ = {
 			isa = PBXGroup;
 			children = (
+				FCA716E52BDBB4AB007876AB /* Other */,
 				FCA7168B2BD825D1007876AB /* domlouvacApp.swift */,
 				FCA716C22BD837E0007876AB /* Resources */,
 				FCA716C12BD837D6007876AB /* Model */,
@@ -167,7 +184,6 @@
 			children = (
 				FCA716B72BD82C6E007876AB /* HomeView.swift */,
 				FCA7168F2BD825D1007876AB /* Item.swift */,
-				FCA7168D2BD825D1007876AB /* ContentView.swift */,
 				FCA716C52BD838F4007876AB /* EventPreview.swift */,
 				FCA716C72BD90E56007876AB /* EventList.swift */,
 				FCA716C92BD96017007876AB /* EventDetailView.swift */,
@@ -177,6 +193,10 @@
 				FCA716D32BDA5391007876AB /* GroupListItemView.swift */,
 				FCA716D72BDA568E007876AB /* CreateGroupView.swift */,
 				FCA716D92BDA56A1007876AB /* JoinGroupView.swift */,
+				FCA716DB2BDBA531007876AB /* RegisterView.swift */,
+				FCA716DD2BDBA540007876AB /* LoginView.swift */,
+				FCA716DF2BDBA567007876AB /* WelcomeView.swift */,
+				FCA716E12BDBAFDA007876AB /* MainView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -187,6 +207,7 @@
 				FCA716B92BD830CA007876AB /* Event.swift */,
 				FCA716CB2BD97376007876AB /* EventDetailViewModel.swift */,
 				FCA716D52BDA53BB007876AB /* Group.swift */,
+				FCA716E82BDBBB38007876AB /* RegisterViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -197,6 +218,17 @@
 				FCA716912BD825D3007876AB /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		FCA716E52BDBB4AB007876AB /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				FCA716E62BDBB4BB007876AB /* Network.swift */,
+				FCA716EA2BDBC13E007876AB /* HttpClient.swift */,
+				FCA716EC2BDBC195007876AB /* JsonHelper.swift */,
+				FCA716EE2BDBDD30007876AB /* Auth.swift */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,20 +363,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCA716DA2BDA56A1007876AB /* JoinGroupView.swift in Sources */,
+				FCA716E92BDBBB38007876AB /* RegisterViewModel.swift in Sources */,
+				FCA716E22BDBAFDA007876AB /* MainView.swift in Sources */,
 				FCA716C82BD90E56007876AB /* EventList.swift in Sources */,
-				FCA7168E2BD825D1007876AB /* ContentView.swift in Sources */,
 				FCA716B82BD82C6E007876AB /* HomeView.swift in Sources */,
+				FCA716EF2BDBDD30007876AB /* Auth.swift in Sources */,
 				FCA716D62BDA53BB007876AB /* Group.swift in Sources */,
 				FCA716C62BD838F4007876AB /* EventPreview.swift in Sources */,
 				FCA716CC2BD97376007876AB /* EventDetailViewModel.swift in Sources */,
 				FCA716902BD825D1007876AB /* Item.swift in Sources */,
+				FCA716EB2BDBC13E007876AB /* HttpClient.swift in Sources */,
 				FCA716D02BDA5258007876AB /* GroupsView.swift in Sources */,
+				FCA716DC2BDBA532007876AB /* RegisterView.swift in Sources */,
 				FCA716CA2BD96017007876AB /* EventDetailView.swift in Sources */,
 				FCA7168C2BD825D1007876AB /* domlouvacApp.swift in Sources */,
 				FCA716BA2BD830CA007876AB /* Event.swift in Sources */,
 				FCA716CE2BDA51B5007876AB /* ProfileView.swift in Sources */,
 				FCA716BE2BD8365D007876AB /* ModelData.swift in Sources */,
+				FCA716E72BDBB4BB007876AB /* Network.swift in Sources */,
+				FCA716ED2BDBC195007876AB /* JsonHelper.swift in Sources */,
+				FCA716E02BDBA567007876AB /* WelcomeView.swift in Sources */,
 				FCA716D42BDA5391007876AB /* GroupListItemView.swift in Sources */,
+				FCA716DE2BDBA540007876AB /* LoginView.swift in Sources */,
 				FCA716D22BDA536C007876AB /* GroupDetail.swift in Sources */,
 				FCA716D82BDA568E007876AB /* CreateGroupView.swift in Sources */,
 			);

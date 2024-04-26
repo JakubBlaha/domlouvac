@@ -24,7 +24,7 @@ struct CreateGroupView: View {
             } label: {
                 Text("Create Group")
                     .frame(maxWidth: .infinity)
-                    .frame(maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                    .frame(maxHeight: .infinity)
                     .fontWeight(.semibold)
             }
             .buttonStyle(.borderedProminent)
