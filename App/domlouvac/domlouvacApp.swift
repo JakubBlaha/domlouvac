@@ -5,7 +5,7 @@ import SwiftUI
 struct domlouvacApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self
+            Item.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -18,7 +18,7 @@ struct domlouvacApp: App {
 
     var body: some Scene {
         WindowGroup {
-            WelcomeView()
+            RootView()
         }
         .modelContainer(sharedModelContainer)
     }

@@ -38,6 +38,12 @@
 		FCA716EB2BDBC13E007876AB /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA716EA2BDBC13E007876AB /* HttpClient.swift */; };
 		FCA716ED2BDBC195007876AB /* JsonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA716EC2BDBC195007876AB /* JsonHelper.swift */; };
 		FCA716EF2BDBDD30007876AB /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA716EE2BDBDD30007876AB /* Auth.swift */; };
+		FCD96A952BDBF56200C483D9 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD96A942BDBF56200C483D9 /* LoginViewModel.swift */; };
+		FCD96A982BDD422600C483D9 /* LoginResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD96A972BDD422600C483D9 /* LoginResModel.swift */; };
+		FCD96A9A2BDD4A5400C483D9 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD96A992BDD4A5400C483D9 /* Keychain.swift */; };
+		FCD96A9C2BDD503000C483D9 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD96A9B2BDD503000C483D9 /* RootView.swift */; };
+		FCD96A9E2BDD507200C483D9 /* EnvironModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD96A9D2BDD507200C483D9 /* EnvironModel.swift */; };
+		FCD96AA02BDD544400C483D9 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD96A9F2BDD544400C483D9 /* ProfileViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +98,12 @@
 		FCA716EA2BDBC13E007876AB /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
 		FCA716EC2BDBC195007876AB /* JsonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonHelper.swift; sourceTree = "<group>"; };
 		FCA716EE2BDBDD30007876AB /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
+		FCD96A942BDBF56200C483D9 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		FCD96A972BDD422600C483D9 /* LoginResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResModel.swift; sourceTree = "<group>"; };
+		FCD96A992BDD4A5400C483D9 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		FCD96A9B2BDD503000C483D9 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		FCD96A9D2BDD507200C483D9 /* EnvironModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironModel.swift; sourceTree = "<group>"; };
+		FCD96A9F2BDD544400C483D9 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,8 +156,8 @@
 		FCA7168A2BD825D1007876AB /* domlouvac */ = {
 			isa = PBXGroup;
 			children = (
-				FCA716E52BDBB4AB007876AB /* Other */,
 				FCA7168B2BD825D1007876AB /* domlouvacApp.swift */,
+				FCA716E52BDBB4AB007876AB /* Other */,
 				FCA716C22BD837E0007876AB /* Resources */,
 				FCA716C12BD837D6007876AB /* Model */,
 				FCA716BF2BD837AA007876AB /* Views */,
@@ -197,6 +209,7 @@
 				FCA716DD2BDBA540007876AB /* LoginView.swift */,
 				FCA716DF2BDBA567007876AB /* WelcomeView.swift */,
 				FCA716E12BDBAFDA007876AB /* MainView.swift */,
+				FCD96A9B2BDD503000C483D9 /* RootView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -208,6 +221,10 @@
 				FCA716CB2BD97376007876AB /* EventDetailViewModel.swift */,
 				FCA716D52BDA53BB007876AB /* Group.swift */,
 				FCA716E82BDBBB38007876AB /* RegisterViewModel.swift */,
+				FCD96A942BDBF56200C483D9 /* LoginViewModel.swift */,
+				FCD96A972BDD422600C483D9 /* LoginResModel.swift */,
+				FCD96A9D2BDD507200C483D9 /* EnvironModel.swift */,
+				FCD96A9F2BDD544400C483D9 /* ProfileViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -227,6 +244,7 @@
 				FCA716EA2BDBC13E007876AB /* HttpClient.swift */,
 				FCA716EC2BDBC195007876AB /* JsonHelper.swift */,
 				FCA716EE2BDBDD30007876AB /* Auth.swift */,
+				FCD96A992BDD4A5400C483D9 /* Keychain.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -368,12 +386,17 @@
 				FCA716C82BD90E56007876AB /* EventList.swift in Sources */,
 				FCA716B82BD82C6E007876AB /* HomeView.swift in Sources */,
 				FCA716EF2BDBDD30007876AB /* Auth.swift in Sources */,
+				FCD96A9C2BDD503000C483D9 /* RootView.swift in Sources */,
 				FCA716D62BDA53BB007876AB /* Group.swift in Sources */,
 				FCA716C62BD838F4007876AB /* EventPreview.swift in Sources */,
+				FCD96A952BDBF56200C483D9 /* LoginViewModel.swift in Sources */,
+				FCD96A9E2BDD507200C483D9 /* EnvironModel.swift in Sources */,
 				FCA716CC2BD97376007876AB /* EventDetailViewModel.swift in Sources */,
+				FCD96AA02BDD544400C483D9 /* ProfileViewModel.swift in Sources */,
 				FCA716902BD825D1007876AB /* Item.swift in Sources */,
 				FCA716EB2BDBC13E007876AB /* HttpClient.swift in Sources */,
 				FCA716D02BDA5258007876AB /* GroupsView.swift in Sources */,
+				FCD96A9A2BDD4A5400C483D9 /* Keychain.swift in Sources */,
 				FCA716DC2BDBA532007876AB /* RegisterView.swift in Sources */,
 				FCA716CA2BD96017007876AB /* EventDetailView.swift in Sources */,
 				FCA7168C2BD825D1007876AB /* domlouvacApp.swift in Sources */,
@@ -382,6 +405,7 @@
 				FCA716BE2BD8365D007876AB /* ModelData.swift in Sources */,
 				FCA716E72BDBB4BB007876AB /* Network.swift in Sources */,
 				FCA716ED2BDBC195007876AB /* JsonHelper.swift in Sources */,
+				FCD96A982BDD422600C483D9 /* LoginResModel.swift in Sources */,
 				FCA716E02BDBA567007876AB /* WelcomeView.swift in Sources */,
 				FCA716D42BDA5391007876AB /* GroupListItemView.swift in Sources */,
 				FCA716DE2BDBA540007876AB /* LoginView.swift in Sources */,

@@ -2,19 +2,19 @@ import Fluent
 import Vapor
 
 func routes(_ app: Application) throws {
-    app.get { req async in
-        "It works!"
-    }
+    // app.get { req async in
+    //     "It works!"
+    // }
 
-    app.get("hello") { req async -> String in
-        "Hello, world!"
-    }
+    // app.get("hello") { req async -> String in
+    //     "Hello, world!"
+    // }
 
-    let protected = app.grouped(User.authenticator())
+    // let protected = app.grouped(User.authenticator())
 
-    protected.get("me") { req -> String in
-        try req.auth.require(User.self).name
-    }
+    // protected.get("me") { req -> String in
+    //     try req.auth.require(User.self).name
+    // }
 
     let passwordProtected = app.grouped(User.authenticator())
     passwordProtected.post("login") { req -> UserToken in

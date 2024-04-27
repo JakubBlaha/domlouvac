@@ -16,6 +16,21 @@ enum HttpError: Error {
     case badURL, badResponse, errorDecodingData, invalidURL
 }
 
+struct Authorization {
+    public let authorizationHeader: String
+
+    init(username: String, password: String) {
+        let loginString = String(format: "%@:%@", username, password)
+        let loginData = loginString.data(using: String.Encoding.utf8)!
+        let base64LoginString = loginData.base64EncodedString()
+
+        authorizationHeader = "Basic " + base64LoginString
+    }
+}
+
+struct AnyResponse: Decodable {
+}
+
 class HttpClient {
     private let baseUrl: String
 
@@ -46,20 +61,34 @@ class HttpClient {
         return object
     }
 
-    func sendData<T: Encodable>(toEndpoint endpoint: String, object: T, httpMethod: HttpMethod) async throws {
+    func sendData<T: Encodable, U: Decodable>(toEndpoint endpoint: String, object: T, httpMethod: HttpMethod, authorization: Authorization? = nil) async throws -> U {
         var request = try URLRequest(url: getUrl(endpoint))
 
         request.httpMethod = httpMethod.rawValue
         request.addValue(MIMEType.JSON.rawValue,
                          forHTTPHeaderField: HttpHeaders.contentType.rawValue)
 
+        if authorization != nil {
+            request.addValue(authorization!.authorizationHeader, forHTTPHeaderField: "Authorization")
+        }
+
         request.httpBody = try? JsonHelper.shared.encoder.encode(object)
 
-        let (_, response) = try await URLSession.shared.data(for: request)
+        let (data, response) = try await URLSession.shared.data(for: request)
 
         guard (response as? HTTPURLResponse)?.statusCode == 200 else {
             throw HttpError.badResponse
         }
+
+        guard let object = try? JsonHelper.shared.decoder.decode(U.self, from: data) else {
+            throw HttpError.errorDecodingData
+        }
+
+        return object
+    }
+
+    func sendData<T: Encodable>(toEndpoint endpoint: String, object: T, httpMethod: HttpMethod, authorization: Authorization? = nil) async throws {
+        let res: AnyResponse = try await sendData(toEndpoint: endpoint, object: object, httpMethod: httpMethod)
     }
 
     func sendReqest(to endpoint: String, httpMethod: String) async throws {

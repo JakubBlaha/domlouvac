@@ -44,6 +44,7 @@ class RegisterViewModel: ObservableObject, Encodable {
 
         await MainActor.run {
             isSuccess = true
+            isRegistering = false
         }
     }
 }

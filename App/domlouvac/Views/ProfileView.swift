@@ -1,15 +1,35 @@
-//
-//  ProfileView.swift
-//  domlouvac
-//
-//  Created by Jakub Bláha on 25.04.2024.
-//
-
 import SwiftUI
 
 struct ProfileView: View {
+    @EnvironmentObject var environ: EnvironModel
+    @ObservedObject var model = ProfileViewModel()
+
     var body: some View {
-        Text("My profile")
+        VStack {
+            Spacer()
+
+            Button {
+                model.logout()
+                environ.accessToken = nil
+            } label: {
+                ZStack {
+                    Text("Logout")
+                        .frame(maxWidth: .infinity)
+                        .frame(maxHeight: .infinity)
+                        .fontWeight(.semibold)
+
+                    HStack {
+                        Spacer()
+                        Image(systemName: "rectangle.portrait.and.arrow.forward")
+                            .padding(.trailing)
+                    }.frame(maxWidth: .infinity)
+                }
+            }
+            .buttonStyle(.borderedProminent)
+            .frame(maxWidth: .infinity)
+            .frame(height: 60)
+            .padding()
+        }
     }
 }
 
