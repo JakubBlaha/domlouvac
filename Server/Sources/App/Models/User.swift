@@ -16,6 +16,9 @@ final class User: Model, Content {
     @Field(key: "password_hash")
     var passwordHash: String
 
+    @Siblings(through: UserGroup.self, from: \.$user, to: \.$group)
+    public var groups: [Group]
+
     init() {}
 
     init(id: UUID? = nil, name: String, email: String, passwordHash: String) {

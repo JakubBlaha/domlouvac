@@ -32,6 +32,9 @@ struct GroupController: RouteCollection {
 
         try await group.save(on: req.db)
 
+        let user = req.auth.get(User.self)!
+        try await group.$users.attach(user, on: req.db)
+
         return group
     }
 
