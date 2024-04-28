@@ -1,17 +1,12 @@
-//
-//  GroupsView.swift
-//  domlouvac
-//
-//  Created by Jakub Bláha on 25.04.2024.
-//
-
 import SwiftUI
 
 struct GroupsView: View {
+    @ObservedObject var model = GroupsViewModel()
+
     var body: some View {
         NavigationView {
-            List(groups) {group in
-                GroupListItemView()
+            List(model.myGroups) { group in
+                GroupListItemView(group: group)
             }
             .navigationTitle("Your Groups")
             .toolbar {
@@ -20,12 +15,16 @@ struct GroupsView: View {
                         Text("New Group")
                     }
                 }
-                
+
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(destination: JoinGroupView()) {
                         Text("Join")
                     }
                 }
+            }
+        }.onAppear {
+            Task {
+                await self.model.fetchMyGroups()
             }
         }
     }

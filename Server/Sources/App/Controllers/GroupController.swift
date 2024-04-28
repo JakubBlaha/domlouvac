@@ -7,6 +7,11 @@ struct GroupController: RouteCollection {
         let groups = tokenProtected.grouped("groups")
 
         groups.get(use: { try await self.index(req: $0) })
+
+        groups.get { req in
+            try await self.get_my(req: req)
+        }
+
         groups.post(use: { try await self.create(req: $0) })
         groups.group(":groupCode") { group in
             group.delete(use: { try await self.delete(req: $0) })
@@ -50,5 +55,12 @@ struct GroupController: RouteCollection {
 
         try await group.delete(on: req.db)
         return .noContent
+    }
+
+    func get_my(req: Request) async throws -> [Group] {
+        let user = try req.auth.require(User.self)
+        let groups = try await user.$groups.get(on: req.db)
+
+        return groups
     }
 }

@@ -62,6 +62,7 @@ class HttpClient {
         guard let object = try? JsonHelper.shared.decoder.decode([T].self, from: data) else {
             throw HttpError.errorDecodingData
         }
+
         return object
     }
 

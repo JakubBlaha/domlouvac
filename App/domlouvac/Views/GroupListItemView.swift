@@ -1,18 +1,17 @@
-//
-//  GroupListItem.swift
-//  domlouvac
-//
-//  Created by Jakub Bláha on 25.04.2024.
-//
-
 import SwiftUI
 
 struct GroupListItemView: View {
+    var group: Group
+
+    init(group: Group) {
+        self.group = group
+    }
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text(self.group.name)
     }
 }
 
 #Preview {
-    GroupListItemView()
+    GroupListItemView(group: Group(id: UUID(), code: "123123", name: "Preview Group"))
 }
