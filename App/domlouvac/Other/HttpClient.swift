@@ -26,6 +26,10 @@ struct Authorization {
 
         authorizationHeader = "Basic " + base64LoginString
     }
+
+    init(token: String) {
+        authorizationHeader = "Bearer " + token
+    }
 }
 
 struct AnyResponse: Decodable {
@@ -88,7 +92,8 @@ class HttpClient {
     }
 
     func sendData<T: Encodable>(toEndpoint endpoint: String, object: T, httpMethod: HttpMethod, authorization: Authorization? = nil) async throws {
-        let res: AnyResponse = try await sendData(toEndpoint: endpoint, object: object, httpMethod: httpMethod)
+        let res: AnyResponse = try await sendData(
+            toEndpoint: endpoint, object: object, httpMethod: httpMethod, authorization: authorization)
     }
 
     func sendReqest(to endpoint: String, httpMethod: String) async throws {

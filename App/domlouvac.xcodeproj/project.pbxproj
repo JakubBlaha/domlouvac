@@ -44,6 +44,7 @@
 		FCD96A9C2BDD503000C483D9 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD96A9B2BDD503000C483D9 /* RootView.swift */; };
 		FCD96A9E2BDD507200C483D9 /* EnvironModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD96A9D2BDD507200C483D9 /* EnvironModel.swift */; };
 		FCD96AA02BDD544400C483D9 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD96A9F2BDD544400C483D9 /* ProfileViewModel.swift */; };
+		FCD96AA22BDD5ABF00C483D9 /* CreateGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD96AA12BDD5ABF00C483D9 /* CreateGroupViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,7 @@
 		FCD96A9B2BDD503000C483D9 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		FCD96A9D2BDD507200C483D9 /* EnvironModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironModel.swift; sourceTree = "<group>"; };
 		FCD96A9F2BDD544400C483D9 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		FCD96AA12BDD5ABF00C483D9 /* CreateGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +227,7 @@
 				FCD96A972BDD422600C483D9 /* LoginResModel.swift */,
 				FCD96A9D2BDD507200C483D9 /* EnvironModel.swift */,
 				FCD96A9F2BDD544400C483D9 /* ProfileViewModel.swift */,
+				FCD96AA12BDD5ABF00C483D9 /* CreateGroupViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 			files = (
 				FCA716DA2BDA56A1007876AB /* JoinGroupView.swift in Sources */,
 				FCA716E92BDBBB38007876AB /* RegisterViewModel.swift in Sources */,
+				FCD96AA22BDD5ABF00C483D9 /* CreateGroupViewModel.swift in Sources */,
 				FCA716E22BDBAFDA007876AB /* MainView.swift in Sources */,
 				FCA716C82BD90E56007876AB /* EventList.swift in Sources */,
 				FCA716B82BD82C6E007876AB /* HomeView.swift in Sources */,

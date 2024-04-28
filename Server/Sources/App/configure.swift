@@ -22,6 +22,7 @@ public func configure(_ app: Application) async throws {
 
     app.migrations.add(User.Migration())
     app.migrations.add(UserToken.Migration())
+    app.migrations.add(Group.Migration())
 
     try await app.autoMigrate()
 

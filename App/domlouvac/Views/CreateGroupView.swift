@@ -1,26 +1,29 @@
 import SwiftUI
 
 struct CreateGroupView: View {
-    @State private var groupName: String = "";
-    
+    @EnvironmentObject var environ: EnvironModel
+    @ObservedObject var model = CreateGroupViewModel()
+
     var body: some View {
         VStack {
             Text("Create New Group")
                 .font(.title)
                 .fontWeight(.semibold)
-            
-                VStack(alignment: .leading) {
-                    Text("Group Name").padding(.horizontal).fontWeight(.semibold)
-                    
-                    TextField("My New Group", text: $groupName)
-                        .textFieldStyle(.roundedBorder)
-                        .padding(.horizontal)
-                }.padding()
-            
+
+            VStack(alignment: .leading) {
+                Text("Group Name").padding(.horizontal).fontWeight(.semibold)
+
+                TextField("My New Group", text: $model.groupName)
+                    .textFieldStyle(.roundedBorder)
+                    .padding(.horizontal)
+            }.padding()
+
             Spacer()
-            
-            Button() {
-                
+
+            Button {
+                Task {
+                    await model.createGroup(auth: environ.tokenAuth)
+                }
             } label: {
                 Text("Create Group")
                     .frame(maxWidth: .infinity)
