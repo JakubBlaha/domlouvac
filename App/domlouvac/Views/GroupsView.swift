@@ -7,7 +7,11 @@ struct GroupsView: View {
     var body: some View {
         NavigationView {
             List(model.myGroups) { group in
-                GroupListItemView(group: group)
+                NavigationLink {
+                    GroupDetailView(group: group)
+                } label: {
+                    GroupListItemView(group: group)
+                }
             }
             .navigationTitle("Your Groups")
             .toolbar {
