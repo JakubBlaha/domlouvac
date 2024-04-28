@@ -59,7 +59,22 @@ struct GroupController: RouteCollection {
 
     func get_my(req: Request) async throws -> [Group] {
         let user = try req.auth.require(User.self)
-        let groups = try await user.$groups.get(on: req.db)
+
+        let userGroupIds = try await UserGroup.query(on: req.db).filter(\.$user.$id == user.id!)
+            .all().map { group in
+                group.$group.id
+            }
+
+        let groups = try await Group.query(on: req.db).with(\.$users)
+            .filter(\.$id ~~ userGroupIds)
+            .all()
+
+        groups.forEach { group in
+            group.users.forEach { user in
+                user.email = ""
+                user.passwordHash = ""
+            }
+        }
 
         return groups
     }

@@ -46,6 +46,8 @@
 		FCD96AA02BDD544400C483D9 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD96A9F2BDD544400C483D9 /* ProfileViewModel.swift */; };
 		FCD96AA22BDD5ABF00C483D9 /* CreateGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD96AA12BDD5ABF00C483D9 /* CreateGroupViewModel.swift */; };
 		FCD96AA42BDE81A200C483D9 /* GroupsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD96AA32BDE81A200C483D9 /* GroupsViewModel.swift */; };
+		FCD96AA62BDE941900C483D9 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD96AA52BDE941800C483D9 /* UserModel.swift */; };
+		FCD96AA82BDE9AC900C483D9 /* UserPublic.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD96AA72BDE9AC900C483D9 /* UserPublic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +110,8 @@
 		FCD96A9F2BDD544400C483D9 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		FCD96AA12BDD5ABF00C483D9 /* CreateGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewModel.swift; sourceTree = "<group>"; };
 		FCD96AA32BDE81A200C483D9 /* GroupsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewModel.swift; sourceTree = "<group>"; };
+		FCD96AA52BDE941800C483D9 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		FCD96AA72BDE9AC900C483D9 /* UserPublic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPublic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +235,8 @@
 				FCD96A9F2BDD544400C483D9 /* ProfileViewModel.swift */,
 				FCD96AA12BDD5ABF00C483D9 /* CreateGroupViewModel.swift */,
 				FCD96AA32BDE81A200C483D9 /* GroupsViewModel.swift */,
+				FCD96AA52BDE941800C483D9 /* UserModel.swift */,
+				FCD96AA72BDE9AC900C483D9 /* UserPublic.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -394,6 +400,7 @@
 				FCA716B82BD82C6E007876AB /* HomeView.swift in Sources */,
 				FCA716EF2BDBDD30007876AB /* Auth.swift in Sources */,
 				FCD96A9C2BDD503000C483D9 /* RootView.swift in Sources */,
+				FCD96AA62BDE941900C483D9 /* UserModel.swift in Sources */,
 				FCA716D62BDA53BB007876AB /* Group.swift in Sources */,
 				FCA716C62BD838F4007876AB /* EventPreview.swift in Sources */,
 				FCD96A952BDBF56200C483D9 /* LoginViewModel.swift in Sources */,
@@ -406,6 +413,7 @@
 				FCD96A9A2BDD4A5400C483D9 /* Keychain.swift in Sources */,
 				FCA716DC2BDBA532007876AB /* RegisterView.swift in Sources */,
 				FCA716CA2BD96017007876AB /* EventDetailView.swift in Sources */,
+				FCD96AA82BDE9AC900C483D9 /* UserPublic.swift in Sources */,
 				FCA7168C2BD825D1007876AB /* domlouvacApp.swift in Sources */,
 				FCA716BA2BD830CA007876AB /* Event.swift in Sources */,
 				FCA716CE2BDA51B5007876AB /* ProfileView.swift in Sources */,

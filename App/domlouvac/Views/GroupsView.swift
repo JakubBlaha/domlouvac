@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct GroupsView: View {
+    @EnvironmentObject var environ: EnvironModel
     @ObservedObject var model = GroupsViewModel()
 
     var body: some View {
@@ -24,7 +25,7 @@ struct GroupsView: View {
             }
         }.onAppear {
             Task {
-                await self.model.fetchMyGroups()
+                await self.model.fetchMyGroups(auth: try! environ.tokenAuth)
             }
         }
     }

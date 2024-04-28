@@ -35,6 +35,9 @@ struct Authorization {
 struct AnyResponse: Decodable {
 }
 
+struct EmptyData: Encodable {
+}
+
 class HttpClient {
     private let baseUrl: String
 
@@ -52,32 +55,24 @@ class HttpClient {
         return url
     }
 
-    func fetch<T: Codable>(urlSegment: String) async throws -> [T] {
-        let (data, response) = try await URLSession.shared.data(from: getUrl(urlSegment))
-
-        guard (response as? HTTPURLResponse)?.statusCode == 200 else {
-            throw HttpError.badResponse
-        }
-
-        guard let object = try? JsonHelper.shared.decoder.decode([T].self, from: data) else {
-            throw HttpError.errorDecodingData
-        }
-
-        return object
+    func fetch<T: Decodable>(endpoint: String, auth: Authorization) async throws -> [T] {
+        return try await sendData(endpoint: endpoint, object: EmptyData(), httpMethod: HttpMethod.GET, auth: auth)
     }
 
-    func sendData<T: Encodable, U: Decodable>(toEndpoint endpoint: String, object: T, httpMethod: HttpMethod, authorization: Authorization? = nil) async throws -> U {
+    func sendData<T: Encodable, U: Decodable>(endpoint: String, object: T, httpMethod: HttpMethod, auth: Authorization? = nil) async throws -> U {
         var request = try URLRequest(url: getUrl(endpoint))
 
         request.httpMethod = httpMethod.rawValue
         request.addValue(MIMEType.JSON.rawValue,
                          forHTTPHeaderField: HttpHeaders.contentType.rawValue)
 
-        if authorization != nil {
-            request.addValue(authorization!.authorizationHeader, forHTTPHeaderField: "Authorization")
+        if auth != nil {
+            request.addValue(auth!.authorizationHeader, forHTTPHeaderField: "Authorization")
         }
 
-        request.httpBody = try? JsonHelper.shared.encoder.encode(object)
+        if type(of: object) != EmptyData.self {
+            request.httpBody = try? JsonHelper.shared.encoder.encode(object)
+        }
 
         let (data, response) = try await URLSession.shared.data(for: request)
 
@@ -94,7 +89,7 @@ class HttpClient {
 
     func sendData<T: Encodable>(toEndpoint endpoint: String, object: T, httpMethod: HttpMethod, authorization: Authorization? = nil) async throws {
         let res: AnyResponse = try await sendData(
-            toEndpoint: endpoint, object: object, httpMethod: httpMethod, authorization: authorization)
+            endpoint: endpoint, object: object, httpMethod: httpMethod, auth: authorization)
     }
 
     func sendReqest(to endpoint: String, httpMethod: String) async throws {

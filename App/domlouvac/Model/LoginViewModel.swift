@@ -33,7 +33,7 @@ class LoginViewModel: ObservableObject, Encodable {
 
         do {
             loginRes = try await HttpClient.shared.sendData(
-                toEndpoint: "login", object: self, httpMethod: HttpMethod.POST, authorization: authorization)
+                endpoint: "login", object: self, httpMethod: HttpMethod.POST, auth: authorization)
 
             try KeychainWrapper.shared.storeAccessToken(token: loginRes.value)
         } catch {

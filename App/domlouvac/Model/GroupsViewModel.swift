@@ -1,7 +1,7 @@
 import Foundation
 
 class GroupsViewModel: ObservableObject {
-    @Published var myGroups: [Group]
+    @Published var myGroups: [GroupListModel]
     @Published var isError = false
     @Published var isFetching = true
 
@@ -9,7 +9,7 @@ class GroupsViewModel: ObservableObject {
         myGroups = []
     }
 
-    func fetchMyGroups() async {
+    func fetchMyGroups(auth: Authorization) async {
         await MainActor.run {
             isFetching = true
         }
@@ -20,7 +20,10 @@ class GroupsViewModel: ObservableObject {
             }
         }
 
-        guard let groups: [Group] = try? await HttpClient.shared.fetch(urlSegment: "groups") else {
+        guard let groups: [GroupListModel] = try? await HttpClient.shared.fetch(
+            endpoint: "groups",
+            auth: auth
+        ) else {
             await MainActor.run {
                 isError = true
             }

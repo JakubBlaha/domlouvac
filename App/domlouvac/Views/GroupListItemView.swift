@@ -1,9 +1,9 @@
 import SwiftUI
 
 struct GroupListItemView: View {
-    var group: Group
+    var group: GroupListModel
 
-    init(group: Group) {
+    init(group: GroupListModel) {
         self.group = group
     }
 
@@ -13,5 +13,5 @@ struct GroupListItemView: View {
 }
 
 #Preview {
-    GroupListItemView(group: Group(id: UUID(), code: "123123", name: "Preview Group"))
+    GroupListItemView(group: GroupListModel(id: UUID(), code: "123123", name: "Preview Group", users: []))
 }

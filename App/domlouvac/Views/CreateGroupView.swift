@@ -22,7 +22,7 @@ struct CreateGroupView: View {
 
             Button {
                 Task {
-                    await model.createGroup(auth: environ.tokenAuth)
+                    await model.createGroup(auth: try! environ.tokenAuth)
                 }
             } label: {
                 Text("Create Group")
