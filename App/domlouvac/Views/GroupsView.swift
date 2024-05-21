@@ -4,33 +4,40 @@ struct GroupsView: View {
     @EnvironmentObject var environ: EnvironModel
     @ObservedObject var model = GroupsViewModel()
 
-    var body: some View {
-        NavigationView {
-            List(model.myGroups) { group in
-                NavigationLink {
-                    GroupDetailView(group: group)
-                } label: {
-                    GroupListItemView(group: group)
-                }
-            }
-            .navigationTitle("Your Groups")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: CreateGroupView()) {
-                        Text("New Group")
-                    }
-                }
+    @State var needsUpdate = false
 
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: JoinGroupView()) {
-                        Text("Join")
+    var body: some View {
+        VStack {
+            NavigationView {
+                List(model.myGroups) { group in
+                    NavigationLink {
+                        GroupDetailView(group: group).onDisappear(perform: refresh)
+                    } label: {
+                        GroupListItemView(group: group)
+                    }
+                    .navigationTitle("Your Groups")
+                }
+                .onAppear(perform: refresh)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        NavigationLink(destination: CreateGroupView().onDisappear(perform: refresh)) {
+                            Text("New Group")
+                        }
+                    }
+
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        NavigationLink(destination: JoinGroupView().onDisappear(perform: refresh)) {
+                            Text("Join")
+                        }
                     }
                 }
             }
-        }.onAppear {
-            Task {
-                await self.model.fetchMyGroups(auth: try! environ.tokenAuth)
-            }
+        }
+    }
+
+    func refresh() {
+        Task {
+            await self.model.fetchMyGroups(auth: try! environ.tokenAuth)
         }
     }
 }

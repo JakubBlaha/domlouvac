@@ -92,12 +92,16 @@ class HttpClient {
             endpoint: endpoint, object: object, httpMethod: httpMethod, auth: authorization)
     }
 
-    func sendReqest(to endpoint: String, httpMethod: String) async throws {
+    func sendReqest(to endpoint: String, httpMethod: String, auth: Authorization? = nil) async throws {
         var request = try URLRequest(url: getUrl(endpoint))
 
         request.httpMethod = httpMethod
         request.addValue(MIMEType.JSON.rawValue,
                          forHTTPHeaderField: HttpHeaders.contentType.rawValue)
+
+        if auth != nil {
+            request.addValue(auth!.authorizationHeader, forHTTPHeaderField: "Authorization")
+        }
 
         let (_, response) = try await URLSession.shared.data(for: request)
 

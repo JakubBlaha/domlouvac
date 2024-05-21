@@ -3,6 +3,7 @@ import SwiftUI
 struct CreateGroupView: View {
     @EnvironmentObject var environ: EnvironModel
     @ObservedObject var model = CreateGroupViewModel()
+    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         VStack {
@@ -23,6 +24,10 @@ struct CreateGroupView: View {
             Button {
                 Task {
                     await model.createGroup(auth: try! environ.tokenAuth)
+
+                    if model.isSuccess {
+                        dismiss()
+                    }
                 }
             } label: {
                 Text("Create Group")

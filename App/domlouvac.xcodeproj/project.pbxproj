@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC6F5EF62BFBEE1C00E15AF9 /* CreateEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6F5EF52BFBEE1C00E15AF9 /* CreateEventViewModel.swift */; };
 		FCA7168C2BD825D1007876AB /* domlouvacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA7168B2BD825D1007876AB /* domlouvacApp.swift */; };
 		FCA716902BD825D1007876AB /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA7168F2BD825D1007876AB /* Item.swift */; };
 		FCA716922BD825D3007876AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCA716912BD825D3007876AB /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 		FCA716EB2BDBC13E007876AB /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA716EA2BDBC13E007876AB /* HttpClient.swift */; };
 		FCA716ED2BDBC195007876AB /* JsonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA716EC2BDBC195007876AB /* JsonHelper.swift */; };
 		FCA716EF2BDBDD30007876AB /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA716EE2BDBDD30007876AB /* Auth.swift */; };
+		FCCC203F2BFBBF8D0007B74F /* CreateEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCC203E2BFBBF8D0007B74F /* CreateEventView.swift */; };
 		FCD96A952BDBF56200C483D9 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD96A942BDBF56200C483D9 /* LoginViewModel.swift */; };
 		FCD96A982BDD422600C483D9 /* LoginResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD96A972BDD422600C483D9 /* LoginResModel.swift */; };
 		FCD96A9A2BDD4A5400C483D9 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD96A992BDD4A5400C483D9 /* Keychain.swift */; };
@@ -50,6 +52,7 @@
 		FCD96AA82BDE9AC900C483D9 /* UserPublic.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD96AA72BDE9AC900C483D9 /* UserPublic.swift */; };
 		FCD96AAA2BDEAA6E00C483D9 /* GroupDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD96AA92BDEAA6E00C483D9 /* GroupDetailViewModel.swift */; };
 		FCD96AAC2BDEAE0900C483D9 /* UserListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD96AAB2BDEAE0900C483D9 /* UserListItemView.swift */; };
+		FCD96AAE2BDEB4AA00C483D9 /* JoinGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD96AAD2BDEB4AA00C483D9 /* JoinGroupViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +73,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FC6F5EF52BFBEE1C00E15AF9 /* CreateEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewModel.swift; sourceTree = "<group>"; };
 		FCA716882BD825D1007876AB /* domlouvac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = domlouvac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCA7168B2BD825D1007876AB /* domlouvacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = domlouvacApp.swift; sourceTree = "<group>"; };
 		FCA7168F2BD825D1007876AB /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -104,6 +108,7 @@
 		FCA716EA2BDBC13E007876AB /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
 		FCA716EC2BDBC195007876AB /* JsonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonHelper.swift; sourceTree = "<group>"; };
 		FCA716EE2BDBDD30007876AB /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
+		FCCC203E2BFBBF8D0007B74F /* CreateEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventView.swift; sourceTree = "<group>"; };
 		FCD96A942BDBF56200C483D9 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		FCD96A972BDD422600C483D9 /* LoginResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResModel.swift; sourceTree = "<group>"; };
 		FCD96A992BDD4A5400C483D9 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
@@ -116,6 +121,7 @@
 		FCD96AA72BDE9AC900C483D9 /* UserPublic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPublic.swift; sourceTree = "<group>"; };
 		FCD96AA92BDEAA6E00C483D9 /* GroupDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailViewModel.swift; sourceTree = "<group>"; };
 		FCD96AAB2BDEAE0900C483D9 /* UserListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListItemView.swift; sourceTree = "<group>"; };
+		FCD96AAD2BDEB4AA00C483D9 /* JoinGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinGroupViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +229,7 @@
 				FCA716E12BDBAFDA007876AB /* MainView.swift */,
 				FCD96A9B2BDD503000C483D9 /* RootView.swift */,
 				FCD96AAB2BDEAE0900C483D9 /* UserListItemView.swift */,
+				FCCC203E2BFBBF8D0007B74F /* CreateEventView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -243,6 +250,8 @@
 				FCD96AA52BDE941800C483D9 /* UserModel.swift */,
 				FCD96AA72BDE9AC900C483D9 /* UserPublic.swift */,
 				FCD96AA92BDEAA6E00C483D9 /* GroupDetailViewModel.swift */,
+				FCD96AAD2BDEB4AA00C483D9 /* JoinGroupViewModel.swift */,
+				FC6F5EF52BFBEE1C00E15AF9 /* CreateEventViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -404,13 +413,16 @@
 				FCA716E22BDBAFDA007876AB /* MainView.swift in Sources */,
 				FCA716C82BD90E56007876AB /* EventList.swift in Sources */,
 				FCA716B82BD82C6E007876AB /* HomeView.swift in Sources */,
+				FCCC203F2BFBBF8D0007B74F /* CreateEventView.swift in Sources */,
 				FCA716EF2BDBDD30007876AB /* Auth.swift in Sources */,
 				FCD96A9C2BDD503000C483D9 /* RootView.swift in Sources */,
 				FCD96AA62BDE941900C483D9 /* UserModel.swift in Sources */,
 				FCA716D62BDA53BB007876AB /* Group.swift in Sources */,
+				FCD96AAE2BDEB4AA00C483D9 /* JoinGroupViewModel.swift in Sources */,
 				FCA716C62BD838F4007876AB /* EventPreview.swift in Sources */,
 				FCD96A952BDBF56200C483D9 /* LoginViewModel.swift in Sources */,
 				FCD96A9E2BDD507200C483D9 /* EnvironModel.swift in Sources */,
+				FC6F5EF62BFBEE1C00E15AF9 /* CreateEventViewModel.swift in Sources */,
 				FCA716CC2BD97376007876AB /* EventDetailViewModel.swift in Sources */,
 				FCD96AA02BDD544400C483D9 /* ProfileViewModel.swift in Sources */,
 				FCA716902BD825D1007876AB /* Item.swift in Sources */,

@@ -13,9 +13,22 @@ struct GroupController: RouteCollection {
         }
 
         groups.post(use: { try await self.create(req: $0) })
-        groups.group(":groupCode") { group in
-            group.delete(use: { try await self.delete(req: $0) })
-        }
+
+        groups.post(
+            "join", ":groupCode",
+            use: { req in
+                try await self.join(req: req)
+            })
+
+        groups.post(
+            "leave", ":groupId",
+            use: { req in
+                try await self.leave(req: req)
+            })
+
+        // groups.delete(":groupCode") { group in
+        //     // self.delete(use: { try await self.delete(req: $0) })
+        // }
     }
 
     func index(req: Request) async throws -> [Group] {
@@ -77,5 +90,43 @@ struct GroupController: RouteCollection {
         }
 
         return groups
+    }
+
+    func join(req: Request) async throws -> HTTPStatus {
+        guard let groupCode = req.parameters.get("groupCode") else {
+            throw Abort(.badRequest)
+        }
+
+        let user = try req.auth.require(User.self)
+
+        guard let group = try await Group.query(on: req.db).filter(\.$code == groupCode).first()
+        else {
+            throw Abort(.notFound)
+        }
+
+        try await group.$users.attach(user, on: req.db)
+
+        return .ok
+    }
+
+    func leave(req: Request) async throws -> HTTPStatus {
+        guard let groupId = req.parameters.get("groupId") else {
+            throw Abort(.badRequest)
+        }
+
+        guard let groupUUID = UUID(uuidString: groupId) else {
+            throw Abort(.badRequest)
+        }
+
+        let user = try req.auth.require(User.self)
+
+        guard let group = try await Group.query(on: req.db).filter(\.$id == groupUUID).first()
+        else {
+            throw Abort(.notFound)
+        }
+
+        try await group.$users.detach(user, on: req.db)
+
+        return .ok
     }
 }

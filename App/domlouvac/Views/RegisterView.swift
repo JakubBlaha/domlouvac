@@ -47,6 +47,7 @@ struct RegisterView: View {
 
             Spacer()
 
+            // Register button
             Button {
                 Task {
                     await model.register()

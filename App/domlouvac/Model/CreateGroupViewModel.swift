@@ -2,6 +2,7 @@ import Foundation
 
 class CreateGroupViewModel: ObservableObject, Encodable {
     @Published var groupName: String = ""
+    @Published var isSuccess: Bool = false
 
     private enum CodingKeys: String, CodingKey {
         case name
@@ -24,6 +25,11 @@ class CreateGroupViewModel: ObservableObject, Encodable {
             )
         } catch {
             print(error)
+            return
+        }
+
+        DispatchQueue.main.async {
+            self.isSuccess = true
         }
     }
 }
