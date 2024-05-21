@@ -34,7 +34,7 @@ struct LoginView: View {
             }.padding()
 
             if model.isError {
-                Text("There was an error while registering!").foregroundColor(.red)
+                Text("There was an error while logging in!").foregroundColor(.red)
             }
 
             Spacer()

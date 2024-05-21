@@ -9,6 +9,7 @@ class EnvironModel: ObservableObject {
 
     var tokenAuth: Authorization {
         get throws {
+            print("accessToken")
             print(accessToken)
 
             if accessToken == nil {

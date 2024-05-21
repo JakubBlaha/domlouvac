@@ -26,6 +26,12 @@ struct GroupController: RouteCollection {
                 try await self.leave(req: req)
             })
 
+        groups.post(
+            ":groupId", "events",
+            use: { req in
+                try await self.createEvent(req: req)
+            })
+
         // groups.delete(":groupCode") { group in
         //     // self.delete(use: { try await self.delete(req: $0) })
         // }
@@ -128,5 +134,36 @@ struct GroupController: RouteCollection {
         try await group.$users.detach(user, on: req.db)
 
         return .ok
+    }
+
+    func createEvent(req: Request) async throws -> Event {
+        let user = try req.auth.require(User.self)
+
+        try Event.Create.validate(content: req)
+
+        let create = try req.content.decode(Event.Create.self)
+
+        guard let startTime = ISO8601DateFormatter().date(from: create.startTime) else {
+            print("Invalid date")
+            throw Abort(.badRequest)
+        }
+
+        guard let groupId = UUID(uuidString: create.groupId) else {
+            print("Invalid UUID")
+            throw Abort(.badRequest)
+        }
+
+        let event = Event(
+            title: create.title,
+            location: create.location,
+            startTime: startTime,
+            durationSeconds: create.durationSeconds,
+            creatorId: user.id!,
+            groupId: groupId
+        )
+
+        try await event.save(on: req.db)
+
+        return event
     }
 }

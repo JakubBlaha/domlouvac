@@ -9,9 +9,9 @@ struct GroupsView: View {
     var body: some View {
         VStack {
             NavigationView {
-                List(model.myGroups) { group in
+                List(model.myGroups, id: \.self.id) { group in
                     NavigationLink {
-                        GroupDetailView(group: group).onDisappear(perform: refresh)
+                        GroupDetailView(group: group)
                     } label: {
                         GroupListItemView(group: group)
                     }

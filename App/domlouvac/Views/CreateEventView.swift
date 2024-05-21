@@ -3,6 +3,7 @@ import SwiftUI
 struct CreateEventView: View {
     @ObservedObject var model = CreateEventViewModel()
     @EnvironmentObject var environ: EnvironModel
+    @Environment(\.dismiss) private var dismiss
 
     var group: GroupListModel
 
@@ -19,9 +20,17 @@ struct CreateEventView: View {
 
             // Title
             VStack(alignment: .leading) {
-                Text("Event title").padding(.horizontal).fontWeight(.semibold)
+                Text("Title").padding(.horizontal).fontWeight(.semibold)
 
-                TextField("My New Event", text: $model.eventTitle)
+                TextField("House party", text: $model.eventTitle)
+                    .textFieldStyle(.roundedBorder)
+                    .padding(.horizontal)
+            }.padding()
+
+            VStack(alignment: .leading) {
+                Text("Location").padding(.horizontal).fontWeight(.semibold)
+
+                TextField("at my place...", text: $model.eventLocation)
                     .textFieldStyle(.roundedBorder)
                     .padding(.horizontal)
             }.padding()
@@ -42,25 +51,33 @@ struct CreateEventView: View {
             }
 
             // Duration
-            HStack {
-                VStack {
+            VStack {
+                HStack {
                     Text("Duration").padding(.horizontal).fontWeight(.semibold)
+                    Spacer()
+                }
 
-                    Picker("Please choose event duration", selection: $model.eventDurationEnumValue) {
-                        ForEach(EventDuration.allCases, id: \.self) { value in
-                            Text(value.rawValue)
+                HStack {
+                    Picker("Please choose event duration", selection: $model.eventDurationEnumValue)
+                        {
+                            ForEach(EventDuration.allCases, id: \.self.value.seconds) { value in
+                                Text(value.value.label)
+                            }
                         }
-                    }
-                }.padding()
-
-                Spacer()
+                    Spacer()
+                }
             }
+            .padding(.horizontal)
 
             Spacer()
 
             Button {
                 Task {
-                    await model.createEvent(auth: try! environ.tokenAuth)
+                    await model.createEvent(auth: try! environ.tokenAuth, groupId: group.id)
+
+                    if model.isSuccess {
+                        dismiss()
+                    }
                 }
             } label: {
                 Text("Save Event")
@@ -72,10 +89,12 @@ struct CreateEventView: View {
             .frame(maxWidth: .infinity)
             .frame(height: 60)
             .padding()
+            .disabled(!model.inputValid)
         }
     }
 }
 
 #Preview {
-    CreateEventView(group: GroupListModel(id: UUID(), code: "123123", name: "Test Group", users: []))
+    CreateEventView(
+        group: GroupListModel(id: UUID(), code: "123123", name: "Test Group", users: []))
 }

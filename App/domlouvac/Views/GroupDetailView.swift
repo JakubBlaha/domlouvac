@@ -56,20 +56,45 @@ struct GroupDetailView: View {
 
                 // New event button
                 if selectedTab == .events {
-                    NavigationLink {
-                        CreateEventView(group: model.group)
+                    Button {
                     } label: {
-                        Button {
+                        NavigationLink {
+                            CreateEventView(group: model.group)
                         } label: {
-                            HStack {
-                                Image(systemName: "plus").frame(maxHeight: /*@START_MENU_TOKEN@*/ .infinity/*@END_MENU_TOKEN@*/)
-                            }.frame(maxWidth: .infinity)
+                            Image(systemName: "plus").frame(maxHeight: .infinity)
+                        }.frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.bordered)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 40)
+                    .frame(width: 40)
+                    .backgroundStyle(Color(.white))
+                } else {
+                    // Leave group button
+                    Button {
+                        isPresentingLeaveConfirm = true
+                    } label: {
+                        HStack {
+                            Text("Leave")
+                                .frame(maxHeight: .infinity)
+                                .fontWeight(.semibold)
+                        }.frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.bordered)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 30)
+                    .frame(width: 80)
+                    .backgroundStyle(Color(.white))
+                    .confirmationDialog("Really leave group?", isPresented: $isPresentingLeaveConfirm) {
+                        Button("Leave group", role: .destructive) {
+                            Task {
+                                await model.leaveGroup(auth: try! environ.tokenAuth)
+
+                                if model.isSuccess {
+                                    dismiss()
+                                }
+                            }
                         }
-                        .buttonStyle(.bordered)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 40)
-                        .frame(width: 40)
-                        .backgroundStyle(Color(.white))
                     }
                 }
             }
@@ -80,33 +105,6 @@ struct GroupDetailView: View {
             } else {
                 List(model.group.users) { user in
                     UserListItemView(user: user)
-                }
-
-                // Leave group button
-                Button {
-                    isPresentingLeaveConfirm = true
-                } label: {
-                    HStack {
-                        Text("Leave")
-                            .frame(maxHeight: .infinity)
-                            .fontWeight(.semibold)
-                    }.frame(maxWidth: .infinity)
-                }
-                .buttonStyle(.bordered)
-                .frame(maxWidth: .infinity)
-                .frame(height: 30)
-                .frame(width: 80)
-                .backgroundStyle(Color(.white))
-                .confirmationDialog("Really leave group?", isPresented: $isPresentingLeaveConfirm) {
-                    Button("Leave group", role: .destructive) {
-                        Task {
-                            await model.leaveGroup(auth: try! environ.tokenAuth)
-
-                            if model.isSuccess {
-                                dismiss()
-                            }
-                        }
-                    }
                 }
             }
 

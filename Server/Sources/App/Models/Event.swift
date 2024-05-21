@@ -10,6 +10,9 @@ final class Event: Model, Content {
     @Field(key: "title")
     var title: String
 
+    @Field(key: "location")
+    var location: String
+
     @Field(key: "start_time")
     var startTime: Date
 
@@ -25,12 +28,13 @@ final class Event: Model, Content {
     init() {}
 
     init(
-        id: UUID? = nil, title: String, startTime: Date, durationSeconds: Int,
+        id: UUID? = nil, title: String, location: String, startTime: Date, durationSeconds: Int,
         creatorId: User.IDValue,
         groupId: Group.IDValue
     ) {
         self.id = id
         self.title = title
+        self.location = location
         self.startTime = startTime
         self.durationSeconds = durationSeconds
         self.$creator.id = creatorId
@@ -39,12 +43,14 @@ final class Event: Model, Content {
 
     struct Create: Content, Validatable {
         var title: String
+        var location: String
         var startTime: String
         var durationSeconds: Int
         var groupId: String
 
         static func validations(_ validations: inout Validations) {
             validations.add("title", as: String.self, is: !.empty)
+            validations.add("location", as: String.self, is: !.empty)
             validations.add("startTime", as: Date.self)
             validations.add("durationSeconds", as: Int.self)
             validations.add("groupId", as: UUID.self)
