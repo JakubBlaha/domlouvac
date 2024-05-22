@@ -32,6 +32,12 @@ struct GroupController: RouteCollection {
                 try await self.createEvent(req: req)
             })
 
+        groups.get(
+            ":groupId", "events",
+            use: { req in
+                try await self.listEvents(req: req)
+            })
+
         // groups.delete(":groupCode") { group in
         //     // self.delete(use: { try await self.delete(req: $0) })
         // }
@@ -116,6 +122,8 @@ struct GroupController: RouteCollection {
     }
 
     func leave(req: Request) async throws -> HTTPStatus {
+        let user = try req.auth.require(User.self)
+
         guard let groupId = req.parameters.get("groupId") else {
             throw Abort(.badRequest)
         }
@@ -123,8 +131,6 @@ struct GroupController: RouteCollection {
         guard let groupUUID = UUID(uuidString: groupId) else {
             throw Abort(.badRequest)
         }
-
-        let user = try req.auth.require(User.self)
 
         guard let group = try await Group.query(on: req.db).filter(\.$id == groupUUID).first()
         else {
@@ -165,5 +171,35 @@ struct GroupController: RouteCollection {
         try await event.save(on: req.db)
 
         return event
+    }
+
+    func listEvents(req: Request) async throws -> [Event] {
+        let user = try req.auth.require(User.self)
+
+        guard let groupId = req.parameters.get("groupId") else {
+            throw Abort(.badRequest)
+        }
+
+        guard let groupUUID = UUID(uuidString: groupId) else {
+            throw Abort(.badRequest)
+        }
+
+        guard let group = try await Group.query(on: req.db).filter(\.$id == groupUUID).first()
+        else {
+            throw Abort(.notFound)
+        }
+
+        let groupUsers = try await group.$users.query(on: req.db).all()
+        let groupUserIds = groupUsers.map({ $0.id })
+
+        // Make sure that user is a member of the group
+        if !groupUserIds.contains(user.id) {
+            throw Abort(.unauthorized)
+        }
+
+        let events = try await Event.query(on: req.db).filter(\.$group.$id == group.id!).all()
+
+        return events
+
     }
 }

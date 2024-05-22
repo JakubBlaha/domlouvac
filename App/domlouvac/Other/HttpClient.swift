@@ -80,7 +80,13 @@ class HttpClient {
             throw HttpError.badResponse
         }
 
-        guard let object = try? JsonHelper.shared.decoder.decode(U.self, from: data) else {
+        let object: U
+
+        do {
+            object = try JsonHelper.shared.decoder.decode(U.self, from: data)
+        } catch {
+            print(error)
+
             throw HttpError.errorDecodingData
         }
 

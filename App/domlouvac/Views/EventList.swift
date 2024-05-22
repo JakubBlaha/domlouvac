@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct EventList: View {
+    var events: [Event]
+
     var body: some View {
         List(events, id: \.self.id) { event in
             ZStack {
@@ -20,5 +22,5 @@ struct EventList: View {
 }
 
 #Preview {
-    EventList()
+    EventList(events: [exampleEvent, exampleEvent])
 }

@@ -3,7 +3,7 @@ import SwiftUI
 struct HomeView: View {
     var body: some View {
         NavigationView {
-            EventList()
+            EventList(events: [exampleEvent, exampleEvent, exampleEvent])
                 .navigationTitle("Events")
         }
     }

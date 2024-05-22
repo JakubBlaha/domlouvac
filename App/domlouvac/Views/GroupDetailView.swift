@@ -21,14 +21,14 @@ struct GroupDetailView: View {
         VStack {
             VStack {
                 HStack {
-                    Text(model.group.name).font(.system(size: 64)).fontWeight(.bold).foregroundColor(.white)
+                    Text(model.group.name).font(.system(size: 48)).fontWeight(.bold).foregroundColor(.white).padding(.horizontal)
                     Spacer()
 //                        .toolbar(.hidden, for: .tabBar)
                         .navigationBarTitleDisplayMode(.inline)
                 }
 
                 HStack {
-                    Text("Code: " + model.group.code).font(.title3).padding().foregroundStyle(Color(.white)).fontWeight(.bold)
+                    Text("Code: " + model.group.code).font(.title3).padding(.horizontal).foregroundStyle(Color(.white)).fontWeight(.bold)
                     Spacer()
                 }
             }.padding().background {
@@ -101,7 +101,7 @@ struct GroupDetailView: View {
             .padding()
 
             if selectedTab == .events {
-                EventList()
+                EventList(events: model.events)
             } else {
                 List(model.group.users) { user in
                     UserListItemView(user: user)
@@ -109,6 +109,13 @@ struct GroupDetailView: View {
             }
 
             Spacer()
+        }
+        .onAppear(perform: refreshEvents)
+    }
+
+    func refreshEvents() {
+        Task {
+            await model.refreshEvents(auth: try! environ.tokenAuth)
         }
     }
 }

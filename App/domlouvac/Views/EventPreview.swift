@@ -2,38 +2,38 @@ import SwiftUI
 
 struct EventPreview: View {
     var event: Event
-    
+
     func getFormattedStartTime() -> String {
         let formatter = DateFormatter()
-        
+
         formatter.dateFormat = "dd.MM.yyyy"
-        
+
         let startString = formatter.string(from: event.startTime)
-        
+
         return startString
     }
-    
+
     var body: some View {
         VStack {
-            AsyncImage(url: URL(string: event.imageUrl)) {image in
-                image.resizable().aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
+            AsyncImage(url: URL(string: "http://picsum.photos/400")) { image in
+                image.resizable().aspectRatio(contentMode: /*@START_MENU_TOKEN@*/ .fill/*@END_MENU_TOKEN@*/)
             } placeholder: {
                 Color.blue
             }
-                .frame(height: 200.0)
-                .clipped()
-            
+            .frame(height: 200.0)
+            .clipped()
+
             HStack {
-                Text(event.name)
+                Text(event.title)
                     .font(.title3)
                     .fontWeight(.semibold)
                     .padding(.leading)
-                
+
                 Spacer()
-                
-                VStack (alignment: .leading) {
+
+                VStack(alignment: .leading) {
                     Label(getFormattedStartTime(), systemImage: "calendar")
-                    Label(event.locationName, systemImage: "map")
+                    Label(event.location, systemImage: "map")
                 }
                 .padding(.horizontal)
             }
@@ -49,5 +49,5 @@ struct EventPreview: View {
 }
 
 #Preview {
-    EventPreview(event: events[0])
+    EventPreview(event: exampleEvent)
 }
