@@ -2,10 +2,6 @@ import Fluent
 import Vapor
 
 func routes(_ app: Application) throws {
-    app.get { req async in
-        "It works!"
-    }
-
     app.post("users") { req async throws -> User in
         try User.Create.validate(content: req)
 
@@ -30,4 +26,5 @@ func routes(_ app: Application) throws {
     }
 
     try app.register(collection: GroupController())
+    try app.register(collection: EventController())
 }

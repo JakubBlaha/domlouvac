@@ -8,9 +8,9 @@ struct EventController: RouteCollection {
 
         events.get(use: { try await self.index(req: $0) })
 
-        // events.get { req in
-        //     try await self.get_my(req: req)
-        // }
+        events.get { req in
+            try await self.listEvents(req: req)
+        }
 
         // events.post(use: { try await self.create(req: $0) })
 
@@ -23,6 +23,19 @@ struct EventController: RouteCollection {
         // events.delete(":groupCode") { group in
         //     // self.delete(use: { try await self.delete(req: $0) })
         // }
+    }
+
+    func listEvents(req: Request) async throws -> [Event] {
+        let user = try req.auth.require(User.self)
+
+        // Get groups which the user is a part of
+        let groups = try await user.$groups.query(on: req.db).all()
+        let groupIds = groups.map({ group in group.id! })
+
+        // Fetch events from all these groups
+        let events = try await Event.query(on: req.db).filter(\.$group.$id ~~ groupIds).all()
+
+        return events
     }
 
     func index(req: Request) async throws -> [Event] {

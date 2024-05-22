@@ -8,16 +8,10 @@ class EnvironModel: ObservableObject {
     @Published var accessToken: String?
 
     var tokenAuth: Authorization {
-        get throws {
-            print("accessToken")
-            print(accessToken)
+        print("accessToken")
+        print(accessToken)
 
-            if accessToken == nil {
-                throw AuthError.tokenNotSetError
-            }
-
-            return Authorization(token: accessToken!)
-        }
+        return Authorization(token: accessToken!)
     }
 
     init() {

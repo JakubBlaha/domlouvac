@@ -7,7 +7,7 @@ struct MainView: View {
                 .tabItem {
                     Image(systemName: "person.3.fill")
                 }
-            HomeView()
+            EventsView()
                 .tabItem {
                     Image(systemName: "calendar")
                 }

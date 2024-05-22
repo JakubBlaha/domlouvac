@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FC6F5EF62BFBEE1C00E15AF9 /* CreateEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6F5EF52BFBEE1C00E15AF9 /* CreateEventViewModel.swift */; };
+		FC6F5EF82BFE4C0200E15AF9 /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6F5EF72BFE4C0200E15AF9 /* EventsViewModel.swift */; };
 		FCA7168C2BD825D1007876AB /* domlouvacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA7168B2BD825D1007876AB /* domlouvacApp.swift */; };
 		FCA716902BD825D1007876AB /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA7168F2BD825D1007876AB /* Item.swift */; };
 		FCA716922BD825D3007876AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCA716912BD825D3007876AB /* Assets.xcassets */; };
@@ -15,7 +16,7 @@
 		FCA7169F2BD825D4007876AB /* domlouvacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA7169E2BD825D4007876AB /* domlouvacTests.swift */; };
 		FCA716A92BD825D4007876AB /* domlouvacUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA716A82BD825D4007876AB /* domlouvacUITests.swift */; };
 		FCA716AB2BD825D4007876AB /* domlouvacUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA716AA2BD825D4007876AB /* domlouvacUITestsLaunchTests.swift */; };
-		FCA716B82BD82C6E007876AB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA716B72BD82C6E007876AB /* HomeView.swift */; };
+		FCA716B82BD82C6E007876AB /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA716B72BD82C6E007876AB /* EventsView.swift */; };
 		FCA716BA2BD830CA007876AB /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA716B92BD830CA007876AB /* Event.swift */; };
 		FCA716C62BD838F4007876AB /* EventPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA716C52BD838F4007876AB /* EventPreview.swift */; };
 		FCA716C82BD90E56007876AB /* EventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA716C72BD90E56007876AB /* EventList.swift */; };
@@ -72,6 +73,7 @@
 
 /* Begin PBXFileReference section */
 		FC6F5EF52BFBEE1C00E15AF9 /* CreateEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewModel.swift; sourceTree = "<group>"; };
+		FC6F5EF72BFE4C0200E15AF9 /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
 		FCA716882BD825D1007876AB /* domlouvac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = domlouvac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCA7168B2BD825D1007876AB /* domlouvacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = domlouvacApp.swift; sourceTree = "<group>"; };
 		FCA7168F2BD825D1007876AB /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -82,7 +84,7 @@
 		FCA716A42BD825D4007876AB /* domlouvacUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = domlouvacUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCA716A82BD825D4007876AB /* domlouvacUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = domlouvacUITests.swift; sourceTree = "<group>"; };
 		FCA716AA2BD825D4007876AB /* domlouvacUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = domlouvacUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		FCA716B72BD82C6E007876AB /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		FCA716B72BD82C6E007876AB /* EventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
 		FCA716B92BD830CA007876AB /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		FCA716C52BD838F4007876AB /* EventPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPreview.swift; sourceTree = "<group>"; };
 		FCA716C72BD90E56007876AB /* EventList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventList.swift; sourceTree = "<group>"; };
@@ -206,7 +208,7 @@
 		FCA716BF2BD837AA007876AB /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FCA716B72BD82C6E007876AB /* HomeView.swift */,
+				FCA716B72BD82C6E007876AB /* EventsView.swift */,
 				FCA7168F2BD825D1007876AB /* Item.swift */,
 				FCA716C52BD838F4007876AB /* EventPreview.swift */,
 				FCA716C72BD90E56007876AB /* EventList.swift */,
@@ -246,6 +248,7 @@
 				FCD96AA92BDEAA6E00C483D9 /* GroupDetailViewModel.swift */,
 				FCD96AAD2BDEB4AA00C483D9 /* JoinGroupViewModel.swift */,
 				FC6F5EF52BFBEE1C00E15AF9 /* CreateEventViewModel.swift */,
+				FC6F5EF72BFE4C0200E15AF9 /* EventsViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -403,9 +406,10 @@
 				FCA716DA2BDA56A1007876AB /* JoinGroupView.swift in Sources */,
 				FCA716E92BDBBB38007876AB /* RegisterViewModel.swift in Sources */,
 				FCD96AA22BDD5ABF00C483D9 /* CreateGroupViewModel.swift in Sources */,
+				FC6F5EF82BFE4C0200E15AF9 /* EventsViewModel.swift in Sources */,
 				FCA716E22BDBAFDA007876AB /* MainView.swift in Sources */,
 				FCA716C82BD90E56007876AB /* EventList.swift in Sources */,
-				FCA716B82BD82C6E007876AB /* HomeView.swift in Sources */,
+				FCA716B82BD82C6E007876AB /* EventsView.swift in Sources */,
 				FCCC203F2BFBBF8D0007B74F /* CreateEventView.swift in Sources */,
 				FCA716EF2BDBDD30007876AB /* Auth.swift in Sources */,
 				FCD96A9C2BDD503000C483D9 /* RootView.swift in Sources */,

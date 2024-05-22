@@ -44,13 +44,6 @@ class LoginViewModel: ObservableObject, Encodable {
             return
         }
 
-        print("Logged in")
-
-        let saved = KeychainWrapper.shared.getAccessToken()
-
-        print("saved")
-        print(saved)
-
         await MainActor.run {
             isSuccess = true
             isLoggingIn = false
