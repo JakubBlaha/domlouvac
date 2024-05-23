@@ -4,6 +4,14 @@ class EventDetailViewModel: ObservableObject {
     @Published var isChangingInterested = false
     @Published var event: Event
 
+    var peopleInterestedString: String {
+        if event.interestedUsers.count == 1 {
+            return "1 person interested"
+        }
+
+        return "\(event.interestedUsers.count) people interested"
+    }
+
     init(event: Event) {
         self.event = event
     }
@@ -22,5 +30,17 @@ class EventDetailViewModel: ObservableObject {
         }
 
         await MainActor.run { event.isUserInterested = interested }
+        await refresh(auth: auth)
+    }
+
+    func refresh(auth: Authorization) async {
+        guard let event: Event = try? await HttpClient.shared.fetch(endpoint: "events/" + event.id.uuidString, auth: auth) else {
+            print("Failed to fetch event!")
+            return
+        }
+
+        await MainActor.run {
+            self.event = event
+        }
     }
 }

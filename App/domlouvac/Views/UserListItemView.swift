@@ -1,11 +1,7 @@
 import SwiftUI
 
 struct UserListItemView: View {
-    var user: UserPublic
-
-    init(user: UserPublic) {
-        self.user = user
-    }
+    var user: UserModel
 
     var body: some View {
         HStack {
@@ -17,5 +13,5 @@ struct UserListItemView: View {
 }
 
 #Preview {
-    UserListItemView(user: UserPublic(id: UUID(), name: "John Doe"))
+    UserListItemView(user: UserModel(id: UUID(), name: "John Doe"))
 }

@@ -1,7 +1,7 @@
 import Fluent
 import Vapor
 
-final class User: Model, Content {
+final class User: Model, Content, HasId {
     static let schema: String = "users"
 
     @ID(key: .id)

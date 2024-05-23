@@ -37,7 +37,7 @@ struct GroupsView: View {
 
     func refresh() {
         Task {
-            await self.model.fetchMyGroups(auth: try! environ.tokenAuth)
+            await self.model.fetchMyGroups(auth: environ.tokenAuth)
         }
     }
 }

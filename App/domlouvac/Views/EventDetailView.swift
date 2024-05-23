@@ -27,6 +27,17 @@ struct EventDetailView: View {
 
             Spacer()
 
+            Button(action: {}, label: {
+                NavigationLink(destination: InterestedUsersView(users: model.event.interestedUsers)) {
+                    HStack(content: {
+                        Image(systemName: "person.3.fill")
+                        Text(model.peopleInterestedString)
+                    })
+                }
+            })
+            .padding()
+            .disabled(model.event.interestedUsers.isEmpty)
+
             HStack {
                 Button(action: handleInterested) {
                     Label("I'm interested", systemImage: "bell.fill")

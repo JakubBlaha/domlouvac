@@ -115,21 +115,21 @@ struct GroupDetailView: View {
 
     func refreshEvents() {
         Task {
-            await model.refreshEvents(auth: try! environ.tokenAuth)
+            await model.refreshEvents(auth: environ.tokenAuth)
         }
     }
 }
 
 #Preview {
     GroupDetailView(group: GroupListModel(id: UUID(), code: "123123", name: "My Group", users: [
-        UserPublic(id: UUID(), name: "John Doe"),
-        UserPublic(id: UUID(), name: "John Doe"),
+        UserModel(id: UUID(), name: "John Doe"),
+        UserModel(id: UUID(), name: "John Doe"),
     ]))
 }
 
 #Preview {
     GroupDetailView(group: GroupListModel(id: UUID(), code: "123123", name: "Cosi Kdesi", users: [
-        UserPublic(id: UUID(), name: "John Doe"),
-        UserPublic(id: UUID(), name: "John Doe"),
+        UserModel(id: UUID(), name: "John Doe"),
+        UserModel(id: UUID(), name: "John Doe"),
     ]), initialTab: .users)
 }

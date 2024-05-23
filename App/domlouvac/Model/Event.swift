@@ -12,25 +12,7 @@ struct Event: Hashable, Codable, Identifiable {
 //    var imageUrl: String
     var location: String
     var isUserInterested: Bool
-    var interestedUsers: [InterestedUser]
-
-    struct InterestedUser: Codable, Hashable, Identifiable {
-        var id: UUID
-        var name: String
-    }
-
-//    private var coordinates: Coordinates
-
-//    var locationCoordinate: CLLocationCoordinate2D {
-//        CLLocationCoordinate2D(
-//            latitude: coordinates.latitude, longitude: coordinates.longitude
-//        )
-//    }
-
-//    struct Coordinates: Hashable, Codable {
-//        var latitude: Double
-//        var longitude: Double
-//    }
+    var interestedUsers: [UserModel]
 
     func getFormattedDate() -> String {
         let formatter = DateFormatter()
@@ -60,5 +42,5 @@ let exampleEvent = Event(
     durationSeconds: 3600,
     location: "In the park",
     isUserInterested: false,
-    interestedUsers: [Event.InterestedUser(id: UUID(), name: "Interested user")]
+    interestedUsers: [UserModel(id: UUID(), name: "Interested user")]
 )

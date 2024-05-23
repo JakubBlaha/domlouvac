@@ -12,6 +12,7 @@ struct EventController: RouteCollection {
             try await self.listEvents(req: req)
         }
 
+        events.get(":eventId", use: find)
         events.post(":eventId", "interested", use: interested)
         events.post(":eventId", "not-interested", use: notInterested)
     }
@@ -25,6 +26,22 @@ struct EventController: RouteCollection {
         let groupIds = groups.map({ group in group.id! })
 
         return groupIds
+    }
+
+    @Sendable func find(_ req: Request) async throws -> Event.Public {
+        let user = try req.auth.require(User.self)
+
+        guard let eventId = req.parameters.get("eventId").toUUID() else {
+            throw Abort(.badRequest)
+        }
+
+        guard let event = try await Event.find(eventId, on: req.db) else {
+            throw Abort(.notFound)
+        }
+
+        try await event.loadUsers(on: req.db)
+
+        return try await event.toPublic(reqUserId: user.id!)
     }
 
     func listEvents(req: Request) async throws -> [Event] {

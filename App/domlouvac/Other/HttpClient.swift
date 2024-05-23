@@ -55,7 +55,7 @@ class HttpClient {
         return url
     }
 
-    func fetch<T: Decodable>(endpoint: String, auth: Authorization) async throws -> [T] {
+    func fetch<T: Decodable>(endpoint: String, auth: Authorization) async throws -> T {
         return try await sendData(endpoint: endpoint, object: EmptyData(), httpMethod: HttpMethod.GET, auth: auth)
     }
 

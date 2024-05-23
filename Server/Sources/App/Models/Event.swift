@@ -1,7 +1,7 @@
 import Fluent
 import Vapor
 
-final class Event: Model, Content {
+final class Event: Model, Content, Sendable {
     static let schema = "events"
 
     @ID(key: .id)
@@ -60,7 +60,7 @@ final class Event: Model, Content {
         }
     }
 
-    struct Res: Content {
+    struct Public: Content {
         var id: UUID
         var title: String
         var location: String
@@ -73,5 +73,49 @@ final class Event: Model, Content {
             var id: UUID
             var name: String
         }
+    }
+
+    func loadUsers(on: any Database) async throws {
+        try await self.$users.load(on: on)
+    }
+
+    func toPublic(reqUserId: UUID) async throws -> Event.Public {
+        let interestedUsers = self.users.map({ user in
+            Event.Public.InterestedUser(id: user.id!, name: user.name)
+        })
+
+        let userIsInterested = interestedUsers.contains(where: { interestedUser in
+            interestedUser.id == reqUserId
+        })
+
+        return Event.Public(
+            id: self.id!,
+            title: self.title,
+            location: self.location,
+            startTime: self.startTime,
+            durationSeconds: self.durationSeconds,
+            interestedUsers: interestedUsers,
+            isUserInterested: userIsInterested)
+    }
+
+    static func toPublic(events: [Event], reqUserId: UUID) async throws -> [Public] {
+        var publicEvents: [Event.Public] = []
+
+        for event in events {
+            guard let publicEvent = try? await event.toPublic(reqUserId: reqUserId) else {
+                throw Abort(.internalServerError)
+            }
+
+            publicEvents.append(publicEvent)
+        }
+
+        return publicEvents
+    }
+
+    static func getFromGroupWithUsers(groupId: UUID, on: any Database) async throws -> [Event] {
+        let events = try await Event.query(on: on).filter(\.$group.$id == groupId)
+            .with(\.$users).all()
+
+        return events
     }
 }

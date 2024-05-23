@@ -11,5 +11,5 @@ struct GroupListModel: Hashable, Decodable, Identifiable {
     var code: String
     var name: String
 
-    var users: [UserPublic]
+    var users: [UserModel]
 }

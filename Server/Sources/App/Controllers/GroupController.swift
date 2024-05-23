@@ -173,52 +173,24 @@ struct GroupController: RouteCollection {
         return event
     }
 
-    func listEvents(req: Request) async throws -> [Event.Res] {
+    func listEvents(req: Request) async throws -> [Event.Public] {
         let user = try req.auth.require(User.self)
 
-        guard let groupId = req.parameters.get("groupId") else {
+        guard let groupId = req.parameters.get("groupId").toUUID() else {
             throw Abort(.badRequest)
         }
 
-        guard let groupUUID = UUID(uuidString: groupId) else {
-            throw Abort(.badRequest)
-        }
-
-        guard let group = try await Group.query(on: req.db).filter(\.$id == groupUUID).first()
-        else {
+        guard let group = try await Group.findWithUsers(groupId, on: req.db) else {
             throw Abort(.notFound)
         }
 
-        let groupUsers = try await group.$users.query(on: req.db).all()
-        let groupUserIds = groupUsers.map({ $0.id })
-
-        // Make sure that user is a member of the group
-        if !groupUserIds.contains(user.id) {
+        if !group.users.hasId(user.id) {
             throw Abort(.unauthorized)
         }
 
-        let events = try await Event.query(on: req.db).filter(\.$group.$id == group.id!)
-            .with(\.$users).all()
+        let events = try await Event.getFromGroupWithUsers(groupId: groupId, on: req.db)
+        let publicEvents = try await Event.toPublic(events: events, reqUserId: user.id!)
 
-        let eventsRes = events.map({ event in
-            let interestedUsers = event.users.map({ user in
-                Event.Res.InterestedUser(id: user.id!, name: user.name)
-            })
-
-            let userIsInterested = interestedUsers.contains(where: { interestedUser in
-                interestedUser.id == user.id
-            })
-
-            return Event.Res(
-                id: event.id!,
-                title: event.title,
-                location: event.location,
-                startTime: event.startTime,
-                durationSeconds: event.durationSeconds,
-                interestedUsers: interestedUsers,
-                isUserInterested: userIsInterested)
-        })
-
-        return eventsRes
+        return publicEvents
     }
 }
