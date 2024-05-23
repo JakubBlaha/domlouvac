@@ -15,7 +15,7 @@ struct EventPreview: View {
 
     var body: some View {
         VStack {
-            AsyncImage(url: URL(string: "http://picsum.photos/400")) { image in
+            AsyncImage(url: URL(string: "https://picsum.photos/400")) { image in
                 image.resizable().aspectRatio(contentMode: /*@START_MENU_TOKEN@*/ .fill/*@END_MENU_TOKEN@*/)
             } placeholder: {
                 Color.blue

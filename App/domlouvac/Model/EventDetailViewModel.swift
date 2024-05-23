@@ -43,4 +43,12 @@ class EventDetailViewModel: ObservableObject {
             self.event = event
         }
     }
+
+    func deleteEvent(auth: Authorization, onSuccess: () -> Void) async {
+        guard let _ = try? await HttpClient.shared.sendReqest(to: "events/\(event.id)", httpMethod: HttpMethod.DELETE.rawValue, auth: auth) else {
+            return
+        }
+
+        onSuccess()
+    }
 }

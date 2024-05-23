@@ -24,6 +24,10 @@ final class Group: Model, Content {
         self.code = code
     }
 
+    func loadUsers(on: any Database) async throws {
+        try await self.$users.load(on: on)
+    }
+
     static func findWithUsers(_ groupId: UUID, on: any Database) async throws -> Group? {
         let group = try await self.query(on: on).filter(\.$id == groupId).with(\.$users)
             .first()

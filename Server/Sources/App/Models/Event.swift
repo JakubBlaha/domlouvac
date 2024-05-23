@@ -79,6 +79,10 @@ final class Event: Model, Content, Sendable {
         try await self.$users.load(on: on)
     }
 
+    func loadGroup(on: any Database) async throws {
+        try await self.$group.load(on: on)
+    }
+
     func toPublic(reqUserId: UUID) async throws -> Event.Public {
         let interestedUsers = self.users.map({ user in
             Event.Public.InterestedUser(id: user.id!, name: user.name)

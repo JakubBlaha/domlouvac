@@ -2,19 +2,41 @@ import SwiftUI
 
 struct EventDetailView: View {
     @EnvironmentObject var environ: EnvironModel
+    @Environment(\.dismiss) private var dismiss
     @StateObject var model: EventDetailViewModel
+    @State var isDeleteConfirmShown = false
 
     var body: some View {
         VStack(alignment: .leading) {
-            AsyncImage(url: URL(string: "http://picsum.photos/400"))
+            AsyncImage(url: URL(string: "https://picsum.photos/400"))
                 .frame(height: 300.0)
                 .frame(maxWidth: UIScreen.main.bounds.width)
                 .clipped()
 
-            Text(model.event.title)
-                .font(.title)
-                .padding([.leading, .top])
-                .fontWeight(.semibold)
+            HStack(alignment: .bottom) {
+                Text(model.event.title)
+                    .font(.title)
+                    .padding([.leading, .top])
+                    .fontWeight(.semibold)
+
+                Spacer()
+
+                Button(action: { isDeleteConfirmShown = true }, label: {
+                    Text("Delete")
+                })
+                .buttonStyle(.bordered)
+                .padding(.horizontal)
+                .alert(isPresented: $isDeleteConfirmShown) {
+                    Alert(
+                        title: Text("Delete event"),
+                        message: Text("Are you sure you want to delete this event?"),
+                        primaryButton: .default(Text("Yes")) {
+                            deleteEvent()
+                        },
+                        secondaryButton: .cancel(Text("No"))
+                    )
+                }
+            }
 
             Label(model.event.location, systemImage: "map.fill")
                 .padding([.top, .leading])
@@ -76,6 +98,16 @@ struct EventDetailView: View {
     func handleNotInterested() {
         Task {
             await model.changeInterested(auth: environ.tokenAuth, interested: false)
+        }
+    }
+
+    func deleteEvent() {
+        Task {
+            await model.deleteEvent(auth: environ.tokenAuth, onSuccess: {
+                Task { @MainActor in
+                    dismiss()
+                }
+            })
         }
     }
 }
