@@ -10,7 +10,7 @@ struct EventList: View {
                     .listRowInsets(EdgeInsets(top: 0, leading: 10, bottom: 20, trailing: 10))
 
                 NavigationLink {
-                    EventDetailView(event: event)
+                    EventDetailView(model: EventDetailViewModel(event: event))
                 } label: {}.opacity(0)
             }
         }

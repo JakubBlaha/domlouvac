@@ -1,15 +1,8 @@
-//
-//  EventDetailView.swift
-//  domlouvac
-//
-//  Created by Jakub Bláha on 24.04.2024.
-//
-
 import SwiftUI
 
 struct EventDetailView: View {
-    @StateObject var viewModel: EventDetailViewModel = EventDetailViewModel()
-    var event: Event
+    @EnvironmentObject var environ: EnvironModel
+    @StateObject var model: EventDetailViewModel
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -18,18 +11,18 @@ struct EventDetailView: View {
                 .frame(maxWidth: UIScreen.main.bounds.width)
                 .clipped()
 
-            Text(event.title)
+            Text(model.event.title)
                 .font(.title)
                 .padding([.leading, .top])
                 .fontWeight(.semibold)
 
-            Label(event.location, systemImage: "map.fill")
+            Label(model.event.location, systemImage: "map.fill")
                 .padding([.top, .leading])
 
-            Label(event.getFormattedDate(), systemImage: "calendar")
+            Label(model.event.getFormattedDate(), systemImage: "calendar")
                 .padding([.top, .leading])
 
-            Label(event.getFormattedStartTime(), systemImage: "clock.fill")
+            Label(model.event.getFormattedStartTime(), systemImage: "clock.fill")
                 .padding([.top, .leading])
 
             Spacer()
@@ -42,16 +35,19 @@ struct EventDetailView: View {
                 }
                 .frame(maxWidth: .infinity)
                 .buttonStyle(.borderedProminent)
+                .disabled(model.isChangingInterested || model.event.isUserInterested)
+                .foregroundColor(model.event.isUserInterested ? .black : .white)
 
-                if viewModel.isInterested {
-                    Button(action: handleNoLongerInterested) {
+                if model.event.isUserInterested {
+                    Button(action: handleNotInterested) {
                         Image(systemName: "xmark")
                             .frame(maxHeight: .infinity)
                             .frame(maxWidth: .infinity)
                     }
-                    .buttonStyle(.bordered)
+                    .buttonStyle(.borderedProminent)
                     .frame(maxHeight: .infinity)
-                    .frame(width: 60)
+                    .frame(width: 70)
+                    .disabled(model.isChangingInterested)
                 }
             }
             .padding()
@@ -61,14 +57,18 @@ struct EventDetailView: View {
     }
 
     func handleInterested() {
-        viewModel.isInterested = true
+        Task {
+            await model.changeInterested(auth: environ.tokenAuth, interested: true)
+        }
     }
 
-    func handleNoLongerInterested() {
-        viewModel.isInterested = false
+    func handleNotInterested() {
+        Task {
+            await model.changeInterested(auth: environ.tokenAuth, interested: false)
+        }
     }
 }
 
 #Preview {
-    EventDetailView(event: exampleEvent)
+    EventDetailView(model: EventDetailViewModel(event: exampleEvent))
 }

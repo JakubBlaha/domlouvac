@@ -25,6 +25,9 @@ final class Event: Model, Content {
     @Parent(key: "group_id")
     var group: Group
 
+    @Siblings(through: UserEvent.self, from: \.$event, to: \.$user)
+    public var users: [User]
+
     init() {}
 
     init(
@@ -54,6 +57,21 @@ final class Event: Model, Content {
             validations.add("startTime", as: Date.self)
             validations.add("durationSeconds", as: Int.self)
             validations.add("groupId", as: UUID.self)
+        }
+    }
+
+    struct Res: Content {
+        var id: UUID
+        var title: String
+        var location: String
+        var startTime: Date
+        var durationSeconds: Int
+        var interestedUsers: [InterestedUser]
+        var isUserInterested: Bool
+
+        struct InterestedUser: Content {
+            var id: UUID
+            var name: String
         }
     }
 }

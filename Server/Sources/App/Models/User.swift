@@ -19,6 +19,9 @@ final class User: Model, Content {
     @Siblings(through: UserGroup.self, from: \.$user, to: \.$group)
     public var groups: [Group]
 
+    @Siblings(through: UserEvent.self, from: \.$user, to: \.$event)
+    public var events: [Event]
+
     init() {}
 
     init(id: UUID? = nil, name: String, email: String, passwordHash: String) {

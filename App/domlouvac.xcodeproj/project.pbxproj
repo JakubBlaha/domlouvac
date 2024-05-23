@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		FC6F5EF62BFBEE1C00E15AF9 /* CreateEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6F5EF52BFBEE1C00E15AF9 /* CreateEventViewModel.swift */; };
 		FC6F5EF82BFE4C0200E15AF9 /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6F5EF72BFE4C0200E15AF9 /* EventsViewModel.swift */; };
+		FC6F5EFA2BFE788B00E15AF9 /* BoolSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6F5EF92BFE788B00E15AF9 /* BoolSwitch.swift */; };
 		FCA7168C2BD825D1007876AB /* domlouvacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA7168B2BD825D1007876AB /* domlouvacApp.swift */; };
 		FCA716902BD825D1007876AB /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA7168F2BD825D1007876AB /* Item.swift */; };
 		FCA716922BD825D3007876AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCA716912BD825D3007876AB /* Assets.xcassets */; };
@@ -74,6 +75,7 @@
 /* Begin PBXFileReference section */
 		FC6F5EF52BFBEE1C00E15AF9 /* CreateEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewModel.swift; sourceTree = "<group>"; };
 		FC6F5EF72BFE4C0200E15AF9 /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
+		FC6F5EF92BFE788B00E15AF9 /* BoolSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolSwitch.swift; sourceTree = "<group>"; };
 		FCA716882BD825D1007876AB /* domlouvac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = domlouvac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCA7168B2BD825D1007876AB /* domlouvacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = domlouvacApp.swift; sourceTree = "<group>"; };
 		FCA7168F2BD825D1007876AB /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				FCA716EC2BDBC195007876AB /* JsonHelper.swift */,
 				FCA716EE2BDBDD30007876AB /* Auth.swift */,
 				FCD96A992BDD4A5400C483D9 /* Keychain.swift */,
+				FC6F5EF92BFE788B00E15AF9 /* BoolSwitch.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 				FCA716D42BDA5391007876AB /* GroupListItemView.swift in Sources */,
 				FCA716DE2BDBA540007876AB /* LoginView.swift in Sources */,
 				FCA716D22BDA536C007876AB /* GroupDetailView.swift in Sources */,
+				FC6F5EFA2BFE788B00E15AF9 /* BoolSwitch.swift in Sources */,
 				FCA716D82BDA568E007876AB /* CreateGroupView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

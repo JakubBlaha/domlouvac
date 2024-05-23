@@ -11,6 +11,13 @@ struct Event: Hashable, Codable, Identifiable {
     var durationSeconds: Int
 //    var imageUrl: String
     var location: String
+    var isUserInterested: Bool
+    var interestedUsers: [InterestedUser]
+
+    struct InterestedUser: Codable, Hashable, Identifiable {
+        var id: UUID
+        var name: String
+    }
 
 //    private var coordinates: Coordinates
 
@@ -46,4 +53,12 @@ struct Event: Hashable, Codable, Identifiable {
     }
 }
 
-let exampleEvent = Event(id: UUID(), title: "Test Event", startTime: Date.now, durationSeconds: 3600, location: "In the park")
+let exampleEvent = Event(
+    id: UUID(),
+    title: "Test Event",
+    startTime: Date.now,
+    durationSeconds: 3600,
+    location: "In the park",
+    isUserInterested: false,
+    interestedUsers: [Event.InterestedUser(id: UUID(), name: "Interested user")]
+)

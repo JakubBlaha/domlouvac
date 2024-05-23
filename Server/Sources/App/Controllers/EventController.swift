@@ -12,64 +12,78 @@ struct EventController: RouteCollection {
             try await self.listEvents(req: req)
         }
 
-        // events.post(use: { try await self.create(req: $0) })
-
-        // events.post(
-        //     "join", ":groupCode",
-        //     use: { req in
-        //         try await self.join(req: req)
-        //     })
-
-        // events.delete(":groupCode") { group in
-        //     // self.delete(use: { try await self.delete(req: $0) })
-        // }
-    }
-
-    func listEvents(req: Request) async throws -> [Event] {
-        let user = try req.auth.require(User.self)
-
-        // Get groups which the user is a part of
-        let groups = try await user.$groups.query(on: req.db).all()
-        let groupIds = groups.map({ group in group.id! })
-
-        // Fetch events from all these groups
-        let events = try await Event.query(on: req.db).filter(\.$group.$id ~~ groupIds).all()
-
-        return events
+        events.post(":eventId", "interested", use: interested)
+        events.post(":eventId", "not-interested", use: notInterested)
     }
 
     func index(req: Request) async throws -> [Event] {
         try await Event.query(on: req.db).all()
     }
 
-    // func delete(req: Request) async throws -> HTTPStatus {
-    //     guard let groupCode = req.parameters.get("groupCode") else {
-    //         throw Abort(.badRequest)
-    //     }
+    private func userGroupIds(_ req: Request, _ user: User) async throws -> [UUID] {
+        let groups = try await user.$groups.query(on: req.db).all()
+        let groupIds = groups.map({ group in group.id! })
 
-    //     guard let group = try await Group.query(on: req.db).filter(\.$code == groupCode).first()
-    //     else {
-    //         throw Abort(.notFound)
-    //     }
+        return groupIds
+    }
 
-    //     try await group.delete(on: req.db)
-    //     return .noContent
-    // }
+    func listEvents(req: Request) async throws -> [Event] {
+        let user = try req.auth.require(User.self)
+        let events = try await Event.query(on: req.db).filter(
+            \.$group.$id ~~ userGroupIds(req, user)
+        )
+        .all()
 
-    // func join(req: Request) async throws -> HTTPStatus {
-    //     guard let groupCode = req.parameters.get("groupCode") else {
-    //         throw Abort(.badRequest)
-    //     }
+        return events
+    }
 
-    //     let user = try req.auth.require(User.self)
+    private func eventFromParams(_ req: Request) async throws -> Event {
+        guard let eventId = req.parameters.get("eventId") else {
+            throw Abort(.badRequest)
+        }
 
-    //     guard let group = try await Group.query(on: req.db).filter(\.$code == groupCode).first()
-    //     else {
-    //         throw Abort(.notFound)
-    //     }
+        guard let eventUUID = UUID(eventId) else {
+            throw Abort(.badRequest)
+        }
 
-    //     try await group.$users.attach(user, on: req.db)
+        guard let event = try await Event.find(eventUUID, on: req.db) else {
+            throw Abort(.notFound)
+        }
 
-    //     return .ok
-    // }
+        return event
+    }
+
+    @Sendable func interested(req: Request) async throws -> HTTPStatus {
+        let user = try req.auth.require(User.self)
+
+        let event = try await eventFromParams(req)
+        let userEvent = try? await UserEvent.query(on: req.db)
+            .filter(\.$user.$id == user.id!)
+            .filter(\.$event.$id == event.id!)
+            .first()
+
+        // If already in DB, return ok
+        if userEvent != nil {
+            return .ok
+        }
+
+        do {
+            try await user.$events.attach(event, on: req.db)
+        } catch {
+            print(String(reflecting: error))
+            throw Abort(.internalServerError)
+        }
+
+        return .ok
+    }
+
+    @Sendable func notInterested(req: Request) async throws -> HTTPStatus {
+        let user = try req.auth.require(User.self)
+
+        guard let _ = try? await user.$events.detach(eventFromParams(req), on: req.db) else {
+            throw Abort(.internalServerError)
+        }
+
+        return .ok
+    }
 }
