@@ -9,13 +9,21 @@ struct GroupsView: View {
     var body: some View {
         VStack {
             NavigationView {
-                List(model.myGroups, id: \.self.id) { group in
-                    NavigationLink {
-                        GroupDetailView(group: group)
-                    } label: {
-                        GroupListItemView(group: group)
+                VStack {
+                    if model.myGroups.isEmpty {
+                        Text("No groups to show.")
+                            .fontWeight(.medium)
+                            .foregroundColor(.gray)
+                    } else {
+                        List(model.myGroups, id: \.self.id) { group in
+                            NavigationLink {
+                                GroupDetailView(group: group)
+                            } label: {
+                                GroupListItemView(group: group)
+                            }
+                            .navigationTitle("Your Groups")
+                        }
                     }
-                    .navigationTitle("Your Groups")
                 }
                 .onAppear(perform: refresh)
                 .toolbar {

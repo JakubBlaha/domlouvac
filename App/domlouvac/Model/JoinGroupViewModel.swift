@@ -15,8 +15,8 @@ class JoinGroupViewModel: ObservableObject {
             return
         }
 
-        DispatchQueue.main.async {
-            self.isSuccess = true
+        DispatchQueue.main.async { [weak self] in
+            self?.isSuccess = true
         }
     }
 }

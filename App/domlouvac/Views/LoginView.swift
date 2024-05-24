@@ -58,7 +58,7 @@ struct LoginView: View {
             .frame(maxHeight: 60)
             .padding()
             .fontWeight(.semibold)
-            .disabled(model.isLoggingIn)
+            .disabled(model.isLoggingIn || model.email.isEmpty || model.password.isEmpty)
 
         }.padding(.top, 120)
     }

@@ -23,7 +23,7 @@ struct CreateGroupView: View {
 
             Button {
                 Task {
-                    await model.createGroup(auth: try! environ.tokenAuth)
+                    await model.createGroup(auth: environ.tokenAuth)
 
                     if model.isSuccess {
                         dismiss()
@@ -39,6 +39,7 @@ struct CreateGroupView: View {
             .frame(maxWidth: .infinity)
             .frame(height: 60)
             .padding()
+            .disabled(model.groupName.isEmpty)
         }
     }
 }

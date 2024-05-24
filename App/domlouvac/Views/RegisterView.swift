@@ -70,13 +70,13 @@ struct RegisterView: View {
                     if model.isSuccess {
                         Image(systemName: "checkmark")
                     }
-                }.frame(maxWidth: /*@START_MENU_TOKEN@*/ .infinity/*@END_MENU_TOKEN@*/)
+                }.frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)
             .frame(maxHeight: 60)
             .padding()
             .fontWeight(.semibold)
-            .disabled(model.isRegistering || model.isSuccess)
+            .disabled(model.isRegistering || model.isSuccess || model.name.isEmpty || model.email.isEmpty || model.password.isEmpty)
         }
         .padding(.top, 120)
     }

@@ -28,8 +28,8 @@ class CreateGroupViewModel: ObservableObject, Encodable {
             return
         }
 
-        DispatchQueue.main.async {
-            self.isSuccess = true
+        DispatchQueue.main.async { [weak self] in
+            self?.isSuccess = true
         }
     }
 }

@@ -2,7 +2,6 @@ import Combine
 import Foundation
 import SwiftUI
 
-
 class CreateEventViewModel: ObservableObject, Encodable {
     @Published var eventTitle: String = ""
     @Published var eventLocation: String = ""
@@ -46,8 +45,8 @@ class CreateEventViewModel: ObservableObject, Encodable {
 
         print(auth)
 
-        DispatchQueue.main.async {
-            self.isCreatingEvent = true
+        DispatchQueue.main.async { [weak self] in
+            self?.isCreatingEvent = true
         }
 
         defer {
@@ -68,8 +67,8 @@ class CreateEventViewModel: ObservableObject, Encodable {
             return
         }
 
-        DispatchQueue.main.async {
-            self.isSuccess = true
+        DispatchQueue.main.async { [weak self] in
+            self?.isSuccess = true
         }
     }
 }
