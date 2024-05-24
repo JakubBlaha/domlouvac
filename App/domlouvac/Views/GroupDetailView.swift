@@ -88,7 +88,7 @@ struct GroupDetailView: View {
                     .confirmationDialog("Really leave group?", isPresented: $isPresentingLeaveConfirm) {
                         Button("Leave group", role: .destructive) {
                             Task {
-                                await model.leaveGroup(auth: try! environ.tokenAuth)
+                                await model.leaveGroup(auth: environ.tokenAuth)
 
                                 if model.isSuccess {
                                     dismiss()
@@ -101,7 +101,12 @@ struct GroupDetailView: View {
             .padding()
 
             if selectedTab == .events {
-                EventList(events: model.events)
+                if model.isRefreshingEvents {
+                    Spacer()
+                    ProgressView()
+                } else {
+                    EventList(events: model.events)
+                }
             } else {
                 List(model.group.users) { user in
                     UserListItemView(user: user)

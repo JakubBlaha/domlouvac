@@ -6,8 +6,12 @@ struct EventsView: View {
 
     var body: some View {
         NavigationView {
-            EventList(events: model.events)
-                .navigationTitle("Events")
+            if model.isRefreshing {
+                ProgressView()
+            } else {
+                EventList(events: model.events)
+                    .navigationTitle("Events")
+            }
         }
         .onAppear(perform: refresh)
     }

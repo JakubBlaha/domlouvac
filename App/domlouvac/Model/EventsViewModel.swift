@@ -1,9 +1,20 @@
 import Foundation
 
 class EventsViewModel: ObservableObject {
+    @Published var isRefreshing = false
     @Published var events: [Event] = []
 
     func refreshEvents(auth: Authorization) async {
+        Task { @MainActor in
+            isRefreshing = true
+        }
+
+        defer {
+            Task { @MainActor in
+                isRefreshing = false
+            }
+        }
+
         var events_: [Event]
 
         do {
@@ -19,6 +30,7 @@ class EventsViewModel: ObservableObject {
 
         await MainActor.run { [events_] in
             events = events_
+            isRefreshing = false
         }
     }
 }
