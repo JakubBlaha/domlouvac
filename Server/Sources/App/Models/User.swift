@@ -30,6 +30,10 @@ final class User: Model, Content, HasId {
         self.email = email
         self.passwordHash = passwordHash
     }
+
+    func loadGroups(on: any Database) async throws {
+        try await self.$groups.load(on: on)
+    }
 }
 
 extension User {

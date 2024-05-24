@@ -135,4 +135,13 @@ final class Event: Model, Content, Sendable {
 
         return events
     }
+
+    static func getForUser(user: User, on: any Database) async throws -> [Event] {
+        let events = try await Event.query(on: on).filter(
+            \.$group.$id ~~ user.groups.map({ group in group.id! })
+        )
+        .all()
+
+        return events
+    }
 }

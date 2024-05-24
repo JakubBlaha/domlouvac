@@ -13,6 +13,10 @@ class EventsViewModel: ObservableObject {
             return
         }
 
+        for index in events_.indices {
+            events_[index].decodeImage()
+        }
+
         await MainActor.run { [events_] in
             events = events_
         }

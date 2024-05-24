@@ -22,13 +22,6 @@ struct EventController: RouteCollection {
         try await Event.query(on: req.db).all()
     }
 
-    private func userGroupIds(_ req: Request, _ user: User) async throws -> [UUID] {
-        let groups = try await user.$groups.query(on: req.db).all()
-        let groupIds = groups.map({ group in group.id! })
-
-        return groupIds
-    }
-
     @Sendable func find(_ req: Request) async throws -> Event.Public {
         let user = try req.auth.require(User.self)
 
@@ -68,14 +61,18 @@ struct EventController: RouteCollection {
         return .ok
     }
 
-    func listEvents(req: Request) async throws -> [Event] {
+    func listEvents(req: Request) async throws -> [Event.Public] {
         let user = try req.auth.require(User.self)
-        let events = try await Event.query(on: req.db).filter(
-            \.$group.$id ~~ userGroupIds(req, user)
-        )
-        .all()
 
-        return events
+        try await user.loadGroups(on: req.db)
+
+        let events = try await Event.getForUser(user: user, on: req.db)
+
+        for event in events {
+            try await event.loadUsers(on: req.db)
+        }
+
+        return try await Event.toPublic(events: events, reqUserId: user.id!)
     }
 
     private func eventFromParams(_ req: Request) async throws -> Event {
