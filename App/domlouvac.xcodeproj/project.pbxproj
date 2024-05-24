@@ -10,6 +10,8 @@
 		FC6F5EF62BFBEE1C00E15AF9 /* CreateEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6F5EF52BFBEE1C00E15AF9 /* CreateEventViewModel.swift */; };
 		FC6F5EF82BFE4C0200E15AF9 /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6F5EF72BFE4C0200E15AF9 /* EventsViewModel.swift */; };
 		FC6F5EFC2BFF33C900E15AF9 /* InterestedUsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6F5EFB2BFF33C900E15AF9 /* InterestedUsersView.swift */; };
+		FC6F5EFE2C00807400E15AF9 /* ImagePickerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6F5EFD2C00807400E15AF9 /* ImagePickerCoordinator.swift */; };
+		FC6F5F002C0080B300E15AF9 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6F5EFF2C0080B300E15AF9 /* ImagePicker.swift */; };
 		FCA7168C2BD825D1007876AB /* domlouvacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA7168B2BD825D1007876AB /* domlouvacApp.swift */; };
 		FCA716902BD825D1007876AB /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA7168F2BD825D1007876AB /* Item.swift */; };
 		FCA716922BD825D3007876AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCA716912BD825D3007876AB /* Assets.xcassets */; };
@@ -75,6 +77,8 @@
 		FC6F5EF52BFBEE1C00E15AF9 /* CreateEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewModel.swift; sourceTree = "<group>"; };
 		FC6F5EF72BFE4C0200E15AF9 /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
 		FC6F5EFB2BFF33C900E15AF9 /* InterestedUsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestedUsersView.swift; sourceTree = "<group>"; };
+		FC6F5EFD2C00807400E15AF9 /* ImagePickerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerCoordinator.swift; sourceTree = "<group>"; };
+		FC6F5EFF2C0080B300E15AF9 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		FCA716882BD825D1007876AB /* domlouvac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = domlouvac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCA7168B2BD825D1007876AB /* domlouvacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = domlouvacApp.swift; sourceTree = "<group>"; };
 		FCA7168F2BD825D1007876AB /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -269,6 +273,8 @@
 				FCA716EC2BDBC195007876AB /* JsonHelper.swift */,
 				FCA716EE2BDBDD30007876AB /* Auth.swift */,
 				FCD96A992BDD4A5400C483D9 /* Keychain.swift */,
+				FC6F5EFD2C00807400E15AF9 /* ImagePickerCoordinator.swift */,
+				FC6F5EFF2C0080B300E15AF9 /* ImagePicker.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -406,6 +412,7 @@
 				FCA716DA2BDA56A1007876AB /* JoinGroupView.swift in Sources */,
 				FCA716E92BDBBB38007876AB /* RegisterViewModel.swift in Sources */,
 				FCD96AA22BDD5ABF00C483D9 /* CreateGroupViewModel.swift in Sources */,
+				FC6F5F002C0080B300E15AF9 /* ImagePicker.swift in Sources */,
 				FC6F5EF82BFE4C0200E15AF9 /* EventsViewModel.swift in Sources */,
 				FCA716E22BDBAFDA007876AB /* MainView.swift in Sources */,
 				FCA716C82BD90E56007876AB /* EventList.swift in Sources */,
@@ -419,6 +426,7 @@
 				FCA716C62BD838F4007876AB /* EventPreview.swift in Sources */,
 				FCD96A952BDBF56200C483D9 /* LoginViewModel.swift in Sources */,
 				FCD96A9E2BDD507200C483D9 /* EnvironModel.swift in Sources */,
+				FC6F5EFE2C00807400E15AF9 /* ImagePickerCoordinator.swift in Sources */,
 				FC6F5EF62BFBEE1C00E15AF9 /* CreateEventViewModel.swift in Sources */,
 				FCA716CC2BD97376007876AB /* EventDetailViewModel.swift in Sources */,
 				FCD96AA02BDD544400C483D9 /* ProfileViewModel.swift in Sources */,

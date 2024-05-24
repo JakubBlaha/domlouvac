@@ -15,13 +15,12 @@ struct EventPreview: View {
 
     var body: some View {
         VStack {
-            AsyncImage(url: URL(string: "https://picsum.photos/400")) { image in
-                image.resizable().aspectRatio(contentMode: /*@START_MENU_TOKEN@*/ .fill/*@END_MENU_TOKEN@*/)
-            } placeholder: {
-                Color.blue
-            }
-            .frame(height: 200.0)
-            .clipped()
+            Image(uiImage: event.uiImage ?? UIImage())
+                .resizable()
+                .scaledToFill()
+                .aspectRatio(contentMode: .fill)
+                .frame(height: 200.0)
+                .clipped()
 
             HStack {
                 Text(event.title)
@@ -43,7 +42,7 @@ struct EventPreview: View {
         .background(
             RoundedRectangle(cornerRadius: 15)
                 .fill(Color.white)
-                .shadow(color: .gray, radius: 10)
+                .shadow(color: .gray, radius: 5)
         )
     }
 }

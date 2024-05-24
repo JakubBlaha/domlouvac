@@ -26,21 +26,15 @@ struct GroupController: RouteCollection {
                 try await self.leave(req: req)
             })
 
-        groups.post(
-            ":groupId", "events",
-            use: { req in
-                try await self.createEvent(req: req)
-            })
+        groups.on(.POST, ":groupId", "events", body: .collect(maxSize: "100mb")) { req in
+            try await self.createEvent(req: req)
+        }
 
         groups.get(
             ":groupId", "events",
             use: { req in
                 try await self.listEvents(req: req)
             })
-
-        // groups.delete(":groupCode") { group in
-        //     // self.delete(use: { try await self.delete(req: $0) })
-        // }
     }
 
     func index(req: Request) async throws -> [Group] {
@@ -164,6 +158,7 @@ struct GroupController: RouteCollection {
             location: create.location,
             startTime: startTime,
             durationSeconds: create.durationSeconds,
+            base64image: create.base64image,
             creatorId: user.id!,
             groupId: groupId
         )

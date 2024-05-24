@@ -4,13 +4,16 @@ struct EventDetailView: View {
     @EnvironmentObject var environ: EnvironModel
     @Environment(\.dismiss) private var dismiss
     @StateObject var model: EventDetailViewModel
-    @State var isDeleteConfirmShown = false
+    @State private var isDeleteConfirmShown = false
 
     var body: some View {
         VStack(alignment: .leading) {
-            AsyncImage(url: URL(string: "https://picsum.photos/400"))
-                .frame(height: 300.0)
-                .frame(maxWidth: UIScreen.main.bounds.width)
+            Image(uiImage: model.event.uiImage ?? UIImage())
+                .resizable()
+                .scaledToFill()
+                .aspectRatio(contentMode: .fill)
+                .frame(height: 250.0)
+                .frame(maxWidth: UIScreen.main.bounds.size.width)
                 .clipped()
 
             HStack(alignment: .bottom) {
@@ -70,6 +73,7 @@ struct EventDetailView: View {
                 .buttonStyle(.borderedProminent)
                 .disabled(model.isChangingInterested || model.event.isUserInterested)
                 .foregroundColor(model.event.isUserInterested ? .black : .white)
+                .animation(.bouncy, value: model.event.isUserInterested)
 
                 if model.event.isUserInterested {
                     Button(action: handleNotInterested) {

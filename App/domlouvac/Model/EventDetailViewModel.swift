@@ -34,12 +34,18 @@ class EventDetailViewModel: ObservableObject {
     }
 
     func refresh(auth: Authorization) async {
-        guard let event: Event = try? await HttpClient.shared.fetch(endpoint: "events/" + event.id.uuidString, auth: auth) else {
+        guard var event: Event = try? await HttpClient.shared.fetch(endpoint: "events/" + event.id.uuidString, auth: auth) else {
             print("Failed to fetch event!")
             return
         }
 
-        await MainActor.run {
+        if let oldUiImage = self.event.uiImage {
+            event.setUiImage(uiImage: oldUiImage)
+        } else {
+            event.decodeImage()
+        }
+
+        await MainActor.run { [event] in
             self.event = event
         }
     }

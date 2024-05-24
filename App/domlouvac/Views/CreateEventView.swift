@@ -4,6 +4,7 @@ struct CreateEventView: View {
     @ObservedObject var model = CreateEventViewModel()
     @EnvironmentObject var environ: EnvironModel
     @Environment(\.dismiss) private var dismiss
+    @State private var isShowingImagePicker = false
 
     var group: GroupListModel
 
@@ -35,61 +36,98 @@ struct CreateEventView: View {
                     .padding(.horizontal)
             }.padding()
 
-            // Start time
             HStack {
-                VStack(alignment: .leading) {
-                    Text("Start time").padding(.horizontal).fontWeight(.semibold)
-
-                    DatePicker(
-                        "Date & Time",
-                        selection: $model.eventStartDate,
-                        displayedComponents: [.date, .hourAndMinute]
-                    ).datePickerStyle(.compact).labelsHidden().padding()
-                }.padding()
-
-                Spacer()
-            }
-
-            // Duration
-            VStack {
+                // Start time
                 HStack {
-                    Text("Duration").padding(.horizontal).fontWeight(.semibold)
+                    VStack(alignment: .leading) {
+                        Text("Start time").padding(.horizontal).fontWeight(.semibold)
+
+                        DatePicker(
+                            "Date & Time",
+                            selection: $model.eventStartDate,
+                            displayedComponents: [.date, .hourAndMinute]
+                        ).datePickerStyle(.compact).labelsHidden().padding()
+                    }
+
                     Spacer()
                 }
 
-                HStack {
-                    Picker("Please choose event duration", selection: $model.eventDurationEnumValue)
-                        {
-                            ForEach(EventDuration.allCases, id: \.self.value.seconds) { value in
-                                Text(value.value.label)
+                // Duration
+                VStack {
+                    HStack {
+                        Text("Duration").padding(.horizontal).fontWeight(.semibold)
+                        Spacer()
+                    }
+
+                    HStack {
+                        Picker("Please choose event duration", selection: $model.eventDurationEnumValue)
+                            {
+                                ForEach(EventDuration.allCases, id: \.self.value.seconds) { value in
+                                    Text(value.value.label)
+                                }
                             }
-                        }
-                    Spacer()
+                    }.padding(.vertical)
                 }
             }
-            .padding(.horizontal)
+            .padding()
+
+            ZStack {
+                Image(uiImage: model.selectedImage ?? UIImage())
+                    .resizable()
+                    .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/ .fill/*@END_MENU_TOKEN@*/)
+                    .frame(width: 200)
+                    .frame(height: 100)
+                    .background(Color(.secondarySystemBackground))
+                    .cornerRadius(10)
+                    .clipped()
+                    .padding(.horizontal)
+
+                Button("Select", action: {
+                    isShowingImagePicker = true
+                })
+                .padding()
+                .sheet(isPresented: $isShowingImagePicker, content: {
+                    ImagePicker(selectedImage: $model.selectedImage, base64EncodedImage: $model.base64EncodedImage)
+                })
+                .buttonStyle(PlainButtonStyle())
+                .background(Color(.secondarySystemBackground))
+                .foregroundColor(/*@START_MENU_TOKEN@*/ .blue/*@END_MENU_TOKEN@*/)
+                .cornerRadius(10)
+            }
+            .padding()
 
             Spacer()
 
             Button {
                 Task {
-                    await model.createEvent(auth: try! environ.tokenAuth, groupId: group.id)
+                    await model.createEvent(auth: environ.tokenAuth, groupId: group.id)
 
                     if model.isSuccess {
                         dismiss()
                     }
                 }
             } label: {
-                Text("Save Event")
-                    .frame(maxWidth: .infinity)
-                    .frame(maxHeight: .infinity)
-                    .fontWeight(.semibold)
+                ZStack {
+                    HStack {
+                        if model.isCreatingEvent {
+                            ProgressView().padding()
+                        }
+
+                        Spacer()
+                    }
+
+                    Text("Save Event")
+                        .frame(maxWidth: .infinity)
+                        .frame(maxHeight: .infinity)
+                        .fontWeight(.semibold)
+                        .padding()
+                }
             }
             .buttonStyle(.borderedProminent)
             .frame(maxWidth: .infinity)
             .frame(height: 60)
             .padding()
-            .disabled(!model.inputValid)
+            .disabled(!model.inputValid || model.isCreatingEvent)
         }
     }
 }

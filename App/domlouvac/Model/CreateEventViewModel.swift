@@ -1,5 +1,6 @@
 import Combine
 import Foundation
+import SwiftUI
 
 struct Duration {
     var label: String
@@ -54,6 +55,8 @@ class CreateEventViewModel: ObservableObject, Encodable {
     @Published var eventLocation: String = ""
     @Published var eventStartDate: Date = Date.now
     @Published var eventDurationEnumValue: EventDuration = .HOURS_1
+    @Published var selectedImage: UIImage? = nil
+    @Published var base64EncodedImage: String? = nil
 
     @Published var inputValid = false
     @Published var isCreatingEvent = false
@@ -64,12 +67,12 @@ class CreateEventViewModel: ObservableObject, Encodable {
     var kombajn: AnyCancellable?
 
     private enum CodingKeys: String, CodingKey {
-        case title, location, startTime, durationSeconds, groupId
+        case title, location, startTime, durationSeconds, groupId, base64image
     }
 
     init() {
-        kombajn = $eventTitle.combineLatest($eventLocation).sink { title, location in
-            if !title.isEmpty && !location.isEmpty {
+        kombajn = $eventTitle.combineLatest($eventLocation, $base64EncodedImage).sink { title, location, base64EncodedImage in
+            if !title.isEmpty && !location.isEmpty && base64EncodedImage != nil {
                 self.inputValid = true
             }
         }
@@ -82,6 +85,7 @@ class CreateEventViewModel: ObservableObject, Encodable {
         try container.encode(groupId!.uuidString, forKey: .groupId)
         try container.encode(eventStartDate, forKey: .startTime)
         try container.encode(eventDurationEnumValue.value.seconds, forKey: .durationSeconds)
+        try container.encode(base64EncodedImage, forKey: .base64image)
     }
 
     func createEvent(auth: Authorization, groupId: UUID) async {

@@ -12,6 +12,7 @@ extension Event {
                 .field("location", .string, .required)
                 .field("start_time", .date, .required)
                 .field("duration_seconds", .int, .required)
+                .field("base64image", .string)
                 .field("creator_id", .uuid, .required, .references("users", "id"))
                 .field("group_id", .uuid, .required, .references("groups", "id"))
                 .create()

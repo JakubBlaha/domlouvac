@@ -4,15 +4,28 @@ import SwiftUI
 
 struct Event: Hashable, Codable, Identifiable {
     var id: UUID
-//    var creator: UUID
-//    var group: UUID
     var title: String
     var startTime: Date
     var durationSeconds: Int
-//    var imageUrl: String
     var location: String
     var isUserInterested: Bool
     var interestedUsers: [UserModel]
+    var base64image: String
+
+    var uiImage: UIImage? = nil
+
+    mutating func decodeImage() {
+        if let imageData = Data(base64Encoded: base64image),
+           let uiImage = UIImage(data: imageData) {
+            self.uiImage = uiImage
+        } else {
+            uiImage = nil
+        }
+    }
+
+    mutating func setUiImage(uiImage: UIImage) {
+        self.uiImage = uiImage
+    }
 
     func getFormattedDate() -> String {
         let formatter = DateFormatter()
@@ -33,6 +46,17 @@ struct Event: Hashable, Codable, Identifiable {
 
         return startString
     }
+
+    enum CodingKeys: CodingKey {
+        case id
+        case title
+        case startTime
+        case durationSeconds
+        case location
+        case isUserInterested
+        case interestedUsers
+        case base64image
+    }
 }
 
 let exampleEvent = Event(
@@ -42,5 +66,6 @@ let exampleEvent = Event(
     durationSeconds: 3600,
     location: "In the park",
     isUserInterested: false,
-    interestedUsers: [UserModel(id: UUID(), name: "Interested user")]
+    interestedUsers: [UserModel(id: UUID(), name: "Interested user")],
+    base64image: "iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mNk+M9Qz0AEYBxVSF+FAAhKDveksOjmAAAAAElFTkSuQmCC"
 )

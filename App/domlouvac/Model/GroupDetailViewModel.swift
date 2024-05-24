@@ -34,11 +34,15 @@ class GroupViewDetailModel: ObservableObject {
             }
         }
 
-        guard let events_: [Event] = try? await HttpClient.shared.fetch(endpoint: "groups/\(group.id)/events", auth: auth) else {
+        guard var events_: [Event] = try? await HttpClient.shared.fetch(endpoint: "groups/\(group.id)/events", auth: auth) else {
             return
         }
 
-        await MainActor.run {
+        for index in events_.indices {
+            events_[index].decodeImage()
+        }
+
+        await MainActor.run { [events_] in
             events = events_
         }
     }

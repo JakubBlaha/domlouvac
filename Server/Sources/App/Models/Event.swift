@@ -19,6 +19,9 @@ final class Event: Model, Content, Sendable {
     @Field(key: "duration_seconds")
     var durationSeconds: Int
 
+    @Field(key: "base64image")
+    var base64image: String
+
     @Parent(key: "creator_id")
     var creator: User
 
@@ -31,7 +34,12 @@ final class Event: Model, Content, Sendable {
     init() {}
 
     init(
-        id: UUID? = nil, title: String, location: String, startTime: Date, durationSeconds: Int,
+        id: UUID? = nil,
+        title: String,
+        location: String,
+        startTime: Date,
+        durationSeconds: Int,
+        base64image: String,
         creatorId: User.IDValue,
         groupId: Group.IDValue
     ) {
@@ -40,6 +48,7 @@ final class Event: Model, Content, Sendable {
         self.location = location
         self.startTime = startTime
         self.durationSeconds = durationSeconds
+        self.base64image = base64image
         self.$creator.id = creatorId
         self.$group.id = groupId
     }
@@ -50,6 +59,7 @@ final class Event: Model, Content, Sendable {
         var startTime: String
         var durationSeconds: Int
         var groupId: String
+        var base64image: String
 
         static func validations(_ validations: inout Validations) {
             validations.add("title", as: String.self, is: !.empty)
@@ -57,6 +67,7 @@ final class Event: Model, Content, Sendable {
             validations.add("startTime", as: Date.self)
             validations.add("durationSeconds", as: Int.self)
             validations.add("groupId", as: UUID.self)
+            validations.add("base64image", as: String.self)
         }
     }
 
@@ -68,6 +79,7 @@ final class Event: Model, Content, Sendable {
         var durationSeconds: Int
         var interestedUsers: [InterestedUser]
         var isUserInterested: Bool
+        var base64image: String
 
         struct InterestedUser: Content {
             var id: UUID
@@ -99,7 +111,8 @@ final class Event: Model, Content, Sendable {
             startTime: self.startTime,
             durationSeconds: self.durationSeconds,
             interestedUsers: interestedUsers,
-            isUserInterested: userIsInterested)
+            isUserInterested: userIsInterested,
+            base64image: self.base64image)
     }
 
     static func toPublic(events: [Event], reqUserId: UUID) async throws -> [Public] {
