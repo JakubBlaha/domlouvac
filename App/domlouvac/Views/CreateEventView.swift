@@ -70,30 +70,40 @@ struct CreateEventView: View {
             }
             .padding()
 
-            ZStack {
-                Image(uiImage: model.selectedImage ?? UIImage())
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 200)
-                    .frame(height: 100)
-                    .background(Color(.secondarySystemBackground))
-                    .cornerRadius(10)
-                    .clipped()
-                    .padding(.horizontal)
+            VStack {
+                HStack {
+                    Text("Cover photo")
+                        .padding(.horizontal)
+                        .fontWeight(.semibold)
 
-                Button("Select", action: {
-                    isShowingImagePicker = true
-                })
+                    Spacer()
+                }.padding(.horizontal)
+
+                ZStack {
+                    Image(uiImage: model.selectedImage ?? UIImage())
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 200)
+                        .frame(height: 100)
+                        .background(Color(.secondarySystemBackground))
+                        .cornerRadius(10)
+                        .clipped()
+                        .padding(.horizontal)
+
+                    Button("Select", action: {
+                        isShowingImagePicker = true
+                    })
+                    .padding()
+                    .sheet(isPresented: $isShowingImagePicker, content: {
+                        ImagePicker(selectedImage: $model.selectedImage, base64EncodedImage: $model.base64EncodedImage)
+                    })
+                    .buttonStyle(PlainButtonStyle())
+                    .background(Color(.secondarySystemBackground))
+                    .foregroundColor(.blue)
+                    .cornerRadius(10)
+                }
                 .padding()
-                .sheet(isPresented: $isShowingImagePicker, content: {
-                    ImagePicker(selectedImage: $model.selectedImage, base64EncodedImage: $model.base64EncodedImage)
-                })
-                .buttonStyle(PlainButtonStyle())
-                .background(Color(.secondarySystemBackground))
-                .foregroundColor(.blue)
-                .cornerRadius(10)
             }
-            .padding()
 
             Spacer()
 
