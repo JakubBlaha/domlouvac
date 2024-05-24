@@ -6,7 +6,7 @@ Author: Jakub Bláha
 
 ## What is it about
 
-The domlouvac application (domlouvač) is intended to serve as a tool for groups of friends to arrange meetings for joint activities. The application allows users to create groups, into which other users can subsequently join using a group code. Within these groups, users can create events, to which they can assign a name, date and time, location, duration, and a thematic image. Users can also delete events within the groups and leave the groups. Users can express their interest in attending an event by clicking the "I'm interested" button on the event detail screen. A user can also cancel their interest. Other users within the group can then view which users are interested in the event. Before using the application, it is necessary for the user to register and log in.
+The **domlouvac** application (domlouvač) is intended to serve as a tool for groups of friends to arrange meetings for joint activities. The application allows users to create groups, into which other users can subsequently join using a group code. Within these groups, users can create events, to which they can assign a name, date and time, location, duration, and a thematic image. Users can also delete events within the groups and leave the groups. Users can express their interest in attending an event by clicking the "I'm interested" button on the event detail screen. A user can also cancel their interest. Other users within the group can then view which users are interested in the event. Before using the application, it is necessary for the user to register and log in.
 
 ## Technicalities
 
@@ -32,9 +32,8 @@ To start the server, it is necessary to run the commands `cd Server` and `swift 
 
 ## Screenshots
 
-|                                |                                     |                                 |                                |
-| ------------------------------ | ----------------------------------- | ------------------------------- | ------------------------------ |
-| ![](./img/00_welcome.png)      | ![](./img/01_register.png)          | ![](./img/02_login.png)         | ![](./img/03_create_group.png) |
-| ![](./img/04_your_groups.png)  | ![](./img/05_group_detail.png)      | ![](./img/05_group_detail.png)  | ![](./img/05_group_detail.png) |
-| ![](./img/05_group_detail.png) | ![](./img/06_creating_event.png)    | ![](./img/07_joining_group.png) | ![](./img/08_events_list.png)  |
-| ![](./img/09_event_detail.png) | ![](./img/10_interested_people.png) | ![](./img/11_account.png)       |
+|                               |                                |                                     |                                 |
+| ----------------------------- | ------------------------------ | ----------------------------------- | ------------------------------- |
+| ![](./img/00_welcome.png)     | ![](./img/01_register.png)     | ![](./img/02_login.png)             | ![](./img/03_create_group.png)  |
+| ![](./img/04_your_groups.png) | ![](./img/05_group_detail.png) | ![](./img/06_creating_event.png)    | ![](./img/07_joining_group.png) |
+| ![](./img/08_events_list.png) | ![](./img/09_event_detail.png) | ![](./img/10_interested_people.png) | ![](./img/11_account.png)       |
