@@ -2,53 +2,6 @@ import Combine
 import Foundation
 import SwiftUI
 
-struct Duration {
-    var label: String
-    var seconds: Int
-}
-
-enum EventDuration: CaseIterable {
-    case MINS_15, MINS_30, MINS_45, HOURS_1, HOURS_2, HOURS_3, HOURS_4, HOURS_5, HOURS_6, HOURS_12,
-         HOURS_24, DAYS_2, WEEK
-
-    var value: Duration {
-        switch self {
-        case .MINS_15:
-            return Duration(label: "15 minutes", seconds: 15 * 60)
-        case .MINS_30:
-            return Duration(label: "30 minutes", seconds: 30 * 60)
-        case .MINS_45:
-            return Duration(label: "45 minutes", seconds: 45 * 60)
-        case .HOURS_1:
-            return Duration(label: "1 hour", seconds: 1 * 60 * 60)
-        case .HOURS_2:
-            return Duration(label: "2 hours", seconds: 2 * 60 * 60)
-        case .HOURS_3:
-            return Duration(label: "3 hours", seconds: 3 * 60 * 60)
-        case .HOURS_4:
-            return Duration(label: "4 hours", seconds: 4 * 60 * 60)
-        case .HOURS_5:
-            return Duration(label: "5 hours", seconds: 5 * 60 * 60)
-        case .HOURS_6:
-            return Duration(label: "6 hours", seconds: 6 * 60 * 60)
-        case .HOURS_12:
-            return Duration(label: "12 hours", seconds: 12 * 60 * 60)
-        case .HOURS_24:
-            return Duration(label: "24 hours", seconds: 24 * 60 * 60)
-        case .DAYS_2:
-            return Duration(label: "2 days", seconds: 2 * 24 * 60 * 60)
-        case .WEEK:
-            return Duration(label: "1 week", seconds: 7 * 24 * 60 * 60)
-        }
-    }
-
-    static var allCases: [EventDuration] {
-        return [
-            .MINS_15, .MINS_30, .MINS_45, .HOURS_1, .HOURS_2, .HOURS_3, .HOURS_4, .HOURS_5,
-            .HOURS_6, .HOURS_12, .HOURS_24, .DAYS_2, .WEEK,
-        ]
-    }
-}
 
 class CreateEventViewModel: ObservableObject, Encodable {
     @Published var eventTitle: String = ""

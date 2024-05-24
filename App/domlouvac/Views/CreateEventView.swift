@@ -60,12 +60,11 @@ struct CreateEventView: View {
                     }
 
                     HStack {
-                        Picker("Please choose event duration", selection: $model.eventDurationEnumValue)
-                            {
-                                ForEach(EventDuration.allCases, id: \.self.value.seconds) { value in
-                                    Text(value.value.label)
-                                }
+                        Picker("Please choose event duration", selection: $model.eventDurationEnumValue) {
+                            ForEach(EventDuration.allCases, id: \.self) { value in
+                                Text(value.value.label).tag(value)
                             }
+                        }
                     }.padding(.vertical)
                 }
             }
@@ -74,7 +73,7 @@ struct CreateEventView: View {
             ZStack {
                 Image(uiImage: model.selectedImage ?? UIImage())
                     .resizable()
-                    .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/ .fill/*@END_MENU_TOKEN@*/)
+                    .aspectRatio(contentMode: .fill)
                     .frame(width: 200)
                     .frame(height: 100)
                     .background(Color(.secondarySystemBackground))
@@ -91,7 +90,7 @@ struct CreateEventView: View {
                 })
                 .buttonStyle(PlainButtonStyle())
                 .background(Color(.secondarySystemBackground))
-                .foregroundColor(/*@START_MENU_TOKEN@*/ .blue/*@END_MENU_TOKEN@*/)
+                .foregroundColor(.blue)
                 .cornerRadius(10)
             }
             .padding()

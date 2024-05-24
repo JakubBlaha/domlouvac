@@ -25,13 +25,13 @@ struct EventPreview: View {
             HStack {
                 Text(event.title)
                     .font(.title3)
-                    .fontWeight(.semibold)
+                    .fontWeight(.medium)
                     .padding(.leading)
 
                 Spacer()
 
                 VStack(alignment: .leading) {
-                    Label(getFormattedStartTime(), systemImage: "calendar")
+                    Label(getFormattedStartTime(), systemImage: "calendar").padding([.bottom, .top], 4)
                     Label(event.location, systemImage: "map")
                 }
                 .padding(.horizontal)
@@ -41,8 +41,8 @@ struct EventPreview: View {
         .cornerRadius(15.0)
         .background(
             RoundedRectangle(cornerRadius: 15)
-                .fill(Color.white)
-                .shadow(color: .gray, radius: 5)
+                .fill(Color(.white))
+                .shadow(color: Color(.systemGray4), radius: 5)
         )
     }
 }

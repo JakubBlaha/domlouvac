@@ -50,6 +50,11 @@ struct EventDetailView: View {
             Label(model.event.getFormattedStartTime(), systemImage: "clock.fill")
                 .padding([.top, .leading])
 
+            HStack {
+                Label(model.event.getFormattedDuration(), systemImage: "hourglass")
+                    .padding([.top, .leading])
+            }.padding([.leading], 4)
+
             Spacer()
 
             Button(action: {}, label: {
